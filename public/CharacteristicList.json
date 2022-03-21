@@ -1,0 +1,302 @@
+[
+    {
+        "Name" : "Adherencia",
+        "Uses" : "Que toque o sea tocada por otra criatura",
+        "Effect" : "Cualquier criatura que toque o sea tocada por esta, debe lanzar 1d10 + Fuerza o Destreza, contra la cantidad de Estrellas + 4, si se falla, quedas adherido a este, sufriendo el estado Capturado. Puede liberarse más adelante haciendo la tirada correspondiente."
+    },
+    {
+        "Name" : "Agilidad",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura podrá realizar una Acción Rápida adicional. Y si posee Acciones Legendarias podrá realizar una adicional en cada ronda."
+    },
+    {
+        "Name" : "Agresividad",
+        "Uses" : "Pasivo",
+        "Effect" : "Siempre que la criatura se mueva en dirección a un enemigo, este ganara Movimiento adicional como sus Estrellas + 1."
+    },
+    {
+        "Name" : "Amorfo",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura puede pasar por cualquier espacio de Medida Diminuta."
+    },
+    {
+        "Name" : "Anfibio",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura puede respirar bajo el agua como si fuese aire."
+    },
+    {
+        "Name" : "Arma Mágica",
+        "Uses" : "Pasivo",
+        "Effect" : "El Daño de los ataques básicos de esta criatura se consideran como Mágicos al momento de calcular resistencias."
+    },
+    {
+        "Name" : "Ataque Sorpresa",
+        "Uses" : "Siempre que ataques a un enemigo desprevenido",
+        "Effect" : "Gana tantos dados de Daño como sus Estrellas."
+    },
+    {
+        "Name" : "Audaz",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura es inmune al Miedo."
+    },
+    {
+        "Name" : "Aura de Infortunio",
+        "Uses" : "Pasivo",
+        "Effect" : "Todas las criaturas que se encuentren a tantos metros de esta como sus Estrellas restaran -30 a todas sus tiradas de Estadística, Habilidad o Precisión (no afecta Daño o Iniciativa)002E"
+    },
+    {
+        "Name" : "Aura de Oscuridad",
+        "Uses" : "Pasivo",
+        "Effect" : "Tantos metros alrededor de la criatura como sus Estrellas se vuelven una zona de Oscuridad. La criatura puede ver a través de esta sin penalizador."
+    },
+    {
+        "Name" : "Aura de Terror",
+        "Uses" : "Pasivo",
+        "Effect" : "Los niveles de Miedo aplicados por esta criatura se ven incrementado en 1 por cada 2 Estrellas que este posee."
+    },
+    {
+        "Name" : "Cambio Vectorial",
+        "Uses" : "Cuando sea objetivo de un Hechizo",
+        "Effect" : "Devuelve el Hechizo a su conjurador o a un lugar deseado por esta criatura."
+    },
+    {
+        "Name" : "Camuflaje Natural",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura suma sus Estrellas*7 a sus tiradas de Sigilo."
+    },
+    {
+        "Name" : "Conjurador",
+        "Uses" : "Al momento de su creación",
+        "Effect" : "La criatura lanzará 1d10 por cada Estrella que posea, este obtendrá un Hechizo de cada elemento que este dado representa: Fuego, Rayo, Agua, Hielo, Viento, Tierra, Naturaleza, Luz, Oscuridad o Arcano."
+    },
+    {
+        "Name" : "Cono Anti-magia",
+        "Uses" : "Pasivo",
+        "Effect" : "Al principio de cada turno la criatura elige una zona a la que mirar, se traza un cono desde su visión hasta el final de la zona de combate. No es posible usar Magia en esa área, y si alguien se encuentra bajo un efecto Mágico la criatura puede forzar a su beneficiario a lanzar 1d10 + Voluntad contra sus Estrellas + 4, si no la superan, se perderán los beneficios. "
+    },
+    {
+        "Name" : "Contaminación",
+        "Uses" : "Pasivo",
+        "Effect" : "Siempre que la criatura realice una Acción Compleja contra un objetivo, lanza 1d10 y si obtiene 10 aplicara “Contaminación” a este. Al principio de cada ronda la criatura contaminada lanza 1d10, y recibirá ese monto como Daño Irreducible, y si esta fuese a caer inconsciente se transforma en un esbirro de quien aplico la Contaminación. Este seguirá sus órdenes y obtendrá esta Característica. Si la criatura que origino este padecimiento muere, se traspasara su conciencia a la criatura contaminada."
+    },
+    {
+        "Name" : "Descarga Errática",
+        "Uses" : "Pasivo",
+        "Effect" : "Al principio de cada ronda lanza 1d10 + Estrellas, si obtiene 10 aplica Parálisis a la criatura enemiga más cercana que no se encuentre Paralizada. Si no posee ningún objetivo, en lugar de eso realiza 69 de Daño Irreducible a todas las criaturas Paralizadas."
+    },
+    {
+        "Name" : "Detección",
+        "Uses" : "Pasivo",
+        "Effect" : "Se duplica el total de la Alerta Pasiva de esta criatura, y será capaz de ver criaturas que sean Invisibles normalmente."
+    },
+    {
+        "Name" : "Enjambre",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura es capaz de compartir sus pensamientos y trasmitir sus pensamientos a los demás miembros de su especie que se encuentren a menos de 10km de este."
+    },
+    {
+        "Name" : "En la Bruma",
+        "Uses" : "Pasivo",
+        "Effect" : "Un Clima de Neblina acompaña a esta criatura a donde sea que valla."
+    },
+    {
+        "Name" : "Falsa Apariencia",
+        "Uses" : "Activable a Voluntad",
+        "Effect" : "La criatura posee una Forma Humanoide a la que puede cambiar, esto solo requiere de una Acción Rápida, y obtendrá una forma adicional por cada Estrella."
+    },
+    {
+        "Name" : "Forma Permanente",
+        "Uses" : "Pasivo",
+        "Effect" : "La forma o apariencia de esta criatura no puede ser alterado por ningún medio."
+    },
+    {
+        "Name" : "Frenesí",
+        "Uses" : "Que el objetivo de sus Ataques o Poderes se encuentre dañado.",
+        "Effect" : "La criatura priorizara a enemigos dañados, y siempre que realice Daño a estos, sumaran sus Estrellas * 4 a sus Ataques o Poderes."
+    },
+    {
+        "Name" : "Imparable",
+        "Uses" : "Pasivo",
+        "Effect" : "Su Movimiento no puede ser reducido, no puede ser Capturado, Paralizado o Dormido."
+    },
+    {
+        "Name" : "Inmunidad Mística",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura solo podrá ser dañada o tenida como objetivo para Hechizos, Movimiento y demás, si el atacante posee un Objeto de calidad Mística en su posesión."
+    },
+    {
+        "Name" : "Inmunidad Prismática",
+        "Uses" : "Al Inicio de su primer turno de Combate",
+        "Effect" : "La criatura lanzara 1d12, cada uno de los resultados representa un tipo de Daño: Fuego, Rayo, Agua, Hielo, Viento, Tierra, Naturaleza, Luz, Oscuridad, Arcano, Físico o Mágico. La criatura se volverá Inmune a ese Daño, si ya tuviese esa Inmunidad vuelve a repetir la tirada."
+    },
+    {
+        "Name" : "Intangible",
+        "Uses" : "Pasivo - Reacción",
+        "Effect" : "La criatura es capaz de atravesar objetos y personas sin dificultad, no requieren Movimiento adicional para pasar a través de una criatura u objetos. Estos pueden también gastar su Reacción para esquivar un Ataque o Hechizo dirigido a estos."
+    },
+    {
+        "Name" : "Invencible",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura no puede ser mañana, ser objetivo de Hechizos, Poderes o demás, hasta que no se cumpla cierta condición. La dificultad de la condición varia de criatura a criatura, aunque las que son de la misma Familia compartirán la misma."
+    },
+    {
+        "Name" : "Invisible",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura es Invisible."
+    },
+    {
+        "Name" : "Ladrón de Vida",
+        "Uses" : "Siempre que Dañe a un enemigo",
+        "Effect" : "Recupera 5 + Estrellas*3 de Vida."
+    },
+    {
+        "Name" : "Levitación/Vuelo",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura tendrá tanto Movimiento en el aire como su Movimiento + Estrellas."
+    },
+    {
+        "Name" : "Ligeres de Movimiento",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura no genera Ataques de Oportunidad."
+    },
+    {
+        "Name" : "Loot Goblin",
+        "Uses" : "Cuando la criatura muere",
+        "Effect" : "Esta generara una recompensa aleatoria dependiendo de la cantidad de Estrellas y de si se trata de una criatura Especial: Cada Estrella aumenta en un nivel la Calidad del Objeto, empezando en Pobre con 1 Estrella, hasta dar una Reliquia si se trata de 6 Estrellas; Para determinar la cantidad de Objetos que esto entregara se lanzara 1d4 por cada dos Estrellas; Si no se trata de una criatura Especial la Calidad de la Reliquia será Histórica o Divina, si fuese Especial será de Calidad Legendaria o Cósmica."
+    },
+    {
+        "Name" : "Maestro Elemental",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura podrá manejar uno de los siguientes elementos, lanzando 1d10 para definir cual: Fuego, Rayo, Agua, Hielo, Viento, Tierra, Naturaleza, Luz, Oscuridad o Arcano. Manipularan cuarto metro cúbico (+1/4 metro cada Estrella), Manipularan 250 kilos/litros de este elemento (+250 kilos cada Estrella), Podrán crear corrientes de aire, fuego, agua o similares, Manipularan el elemento a 10 metros de distancia (+10 metros cada Estrella)."
+    },
+    {
+        "Name" : "Mandato Divino",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura basa sus órdenes en una creencia inquebrantable, no podrá ser afectado por ningún Hechizo, Movimiento o similar que tenga de objetivo a su Mente o Voluntad."
+    },
+    {
+        "Name" : "Matriz Defensiva",
+        "Uses" : "Acción Rápida",
+        "Effect" : "La criatura podrá tomar como Acción Rápida, una de las siguientes acciones una única vez por ronda: Ataque Defensivo, Evadir o Proteger."
+    },
+    {
+        "Name" : "Música de Jefe Final",
+        "Uses" : "Al momento de su creación",
+        "Effect" : "Al momento de crear a esta criatura se selecciona una Sonata o se designa de forma aleatoria, y siempre que la criatura entre en Combate, iniciara este con esta Sonata activa."
+    },
+    {
+        "Name" : "Musical",
+        "Uses" : "Al usar un Poder",
+        "Effect" : "Este podrá realizar la tirada de Sonata, y activar estas a voluntad."
+    },
+    {
+        "Name" : "No Aun…",
+        "Uses" : "Requiere: que su Vida sea reducida a 0.",
+        "Effect" : "La criatura, en lugar de caer, este debe realizar una tirada de Constitución. Si supera el Daño recibido se mantiene de pie en 1 de Vida, pero se aumenta en +5 la dificultad de la siguiente tirada que deba realizar. Este efecto no se activará si la criatura recibe daño al que es vulnerable, o si se tratase de Daño de Luz."
+    },
+    {
+        "Name" : "Piel Venenosa",
+        "Uses" : "Cuando sea atacado por un Ataque o Hechizo a Melee",
+        "Effect" : "Aplica Envenenamiento al atacante."
+    },
+    {
+        "Name" : "Poder de la Muerte",
+        "Uses" : "Pasivo",
+        "Effect" : "Todas las criaturas que se encuentre a tantos metros de este como sus Estrellas, perderán 4 + Estrellas de Vida Máxima al final de cada turno."
+    },
+    {
+        "Name" : "Poder de los Mares",
+        "Uses" : "Mientras se encuentre sumergida en cualquier liquido",
+        "Effect" : "La criatura duplica su Evasión y Precisión mientras se encuentre bajo el agua, e ignora los penalizadores por encontrarse Bajo el Agua."
+    },
+    {
+        "Name" : "Prensil",
+        "Uses" : "Cuando la criatura ataca a un enemigo",
+        "Effect" : "Siempre que la criatura ataque este podrá realizar una tirada de Agarre contra su objetivo."
+    },
+    {
+        "Name" : "Protección",
+        "Uses" : "Pasivo",
+        "Effect" : "Cualquier monto de Daño que reciba el personaje por debajo de 20 + Estrellas*2 es reducido a 0. "
+    },
+    {
+        "Name" : "Ranciedad Degenerativa",
+        "Uses" : "Pasivo",
+        "Effect" : "Al final de cada uno de los turnos la criatura realiza 4 + Estrellas de Daño a todas las criaturas que se encuentren a tantos metros de esta como sus Estrellas. Pero por cada criatura que reciba Daño, este recibirá la mitad de ese Daño; si este no realiza Daño con esta Característica, recupera 20 de Vida al final de cada ronda."
+    },
+    {
+        "Name" : "Regeneración",
+        "Uses" : "Pasivo",
+        "Effect" : "Recupera 10 + Estrellas*2 de Vida al principio de cada uno de sus turnos, a menos que reciba Daño al que es vulnerable o Daño de Fuego."
+    },
+    {
+        "Name" : "Resistencia a la Magia",
+        "Uses" : "Pasivo",
+        "Effect" : "Siempre que se intente aplicar un perjuicio mágico a esta criatura, quien use la Magia debe lanzar 1d10 + Inteligencia y superar 4 + Estrellas, o no se podrá aplicar este. "
+    },
+    {
+        "Name" : "Resurrección",
+        "Uses" : "Al morir",
+        "Effect" : "Al momento de morir la criatura lanza 1d10, y esta volverá a la Vida en esos días. Este tipo de criatura posee un requisito para que esta Característica no se vea activada."
+    },
+    {
+        "Name" : "Sangriento de Vida",
+        "Uses" : "Cuando reduce la Vida de un enemigo a 0",
+        "Effect" : "Gana Vida Temporal igual a la mitad de la Vida máxima de la criatura cuya Vida redujo a 0; esta vida se pierde al terminar el combate. Además, mientras tenga esta Vida Temporal aumenta en 10 + Estrellas*2 al valor de todas sus tiradas, incluido Daño e Iniciativa."
+    },
+    {
+        "Name" : "Segunda Forma",
+        "Uses" : "Cuando su vida es reducida al 10%",
+        "Effect" : "La criatura automáticamente tomara, al principio de su turno, una segunda forma. Recupera su Vida por completo, y partir de este momento podrá realizar una Acción Rápida y una Acción Legendaria adicional en cada ronda. Sus Poderes se verán recargados en la totalidad y otorga usos adicionales igual a sus Estrellas. Estos últimos beneficios (acciones adicionales y recarga de poderes) solo aplicara si la criatura es de 6 Estrellas o si se trata de una criatura Especial."
+    },
+    {
+        "Name" : "Sensibilidad a la Luz",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura no puede permanecer bajo la luz solar por periodos prolongados, recibe 10 de Daño Irreducible a su Vida Máxima al principio de cada ronda que se encuentre en contacto directo con esta."
+    },
+    {
+        "Name" : "Sentidos Sobrehumanos",
+        "Uses" : "Pasivo",
+        "Effect" : "Esta criatura no puede ser sorprendida o tomada por desprevenida mientras se encuentre consciente."
+    },
+    {
+        "Name" : "Sigilo",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura puede tomar la Acción de Esconderse como una Acción Rápida."
+    },
+    {
+        "Name" : "Símbolo de Atracción",
+        "Uses" : "Cuando es atacado",
+        "Effect" : "Fuerza a su atacante (sea físico o mágico) a realizar una tirada de Voluntad y superar 10 + Estrellas*5, si falla, este se encontrará Gravemente Enamorada de la criatura. Sufrirá los efectos de Enamoramiento, pero debe gastar una Acción Rápida en adorar o alagar a la criatura."
+    },
+    {
+        "Name" : "Telepatía Penetrante",
+        "Uses" : "Siempre que Dañe a un objetivo",
+        "Effect" : "En el momento en que realiza Daño conocerá los pensamientos y más profundos secretos de la persona que dañase."
+    },
+    {
+        "Name" : "Trabajo en Equipo",
+        "Uses" : "Pasivo",
+        "Effect" : "Siempre que se encuentre adyacente a un aliado, este sumara Estrellas*4 a su Precisión, Evasión y Daño."
+    },
+    {
+        "Name" : "Transportación Inmediata",
+        "Uses" : "Pasivo",
+        "Effect" : "El Movimiento de la criatura es cambiado por la habilidad de teletransportarse la misma distancia. Esto hace que no pueda ser objetivo de Ataques de Oportunidad."
+    },
+    {
+        "Name" : "Trepador",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura puede adherirse y trepar todo tipo de superficies, sin importar su forma o sustancia."
+    },
+    {
+        "Name" : "Valiente",
+        "Uses" : "Pasivo",
+        "Effect" : "Al momento de realizar una tirada de Voluntad, la criatura lanzara dos veces esta y conservara el mejor resultado."
+    },
+    {
+        "Name" : "Visión Nocturna",
+        "Uses" : "Pasivo",
+        "Effect" : "La criatura posee la posibilidad de ver en la Oscuridad sin penalizador alguno."
+    }
+]

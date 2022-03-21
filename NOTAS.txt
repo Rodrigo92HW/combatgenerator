@@ -1,0 +1,4 @@
+Usar Axios para consumir los nombres de las cosas, eso es buena idea.
+https://www.pluralsight.com/guides/fetch-data-from-a-json-file-in-a-react-app
+
+Colocar que estrellas, niveles, y especial o no DEBE SER ELEGIDO antes de randomizar lo demas
