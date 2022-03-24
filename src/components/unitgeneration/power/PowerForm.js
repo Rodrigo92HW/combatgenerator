@@ -66,7 +66,6 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
         setPowerEffect1('');
         setPowerEffect2('');
         setPowerEffect3('');
-        setPowerEffect4('');
     }
 
     const powerHandlerR = (e) => {
@@ -172,15 +171,11 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       Efecto C
       <input type='text' className='todo-input' onChange={(e) => setPowerEffect3(e.target.value)} value={powerEffect3}/>
       </div>
-      <div className='effectDPower'>
-      Efecto D
-      <input type='text' className='todo-input' onChange={(e) => setPowerEffect4(e.target.value)} value={powerEffect4}/>
-      </div>
-      <button className='powerAddButton' type='submit' onClick={submitPowerHandler} id='bFinal5'>
-        Agregar
+      <button className='powerAddButton frm' type='submit' onClick={submitPowerHandler} id='bFinal5'>
+      <span>Agregar</span>
       </button>
-      <button className='powerRandButton' type='submit' onClick={powerHandlerR} id='bRandom5'>
-        Randomize
+      <button className='powerRandButton frm' type='submit' onClick={powerHandlerR} id='bRandom5'>
+      <span>Randomizar</span>
       </button>
     </form>
   )

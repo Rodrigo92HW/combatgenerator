@@ -48,13 +48,13 @@ function CharacteristicForm({ characteristicName, setCharacteristicName, charact
       </div>
       <div className='effectChar'>
       Efecto
-      <input type='text' className='todo-input' onChange={(e) => setCharacteristicEffect(e.target.value)} value={characteristicEffect}/>
+      <textarea type='text' className='todo-input' onChange={(e) => setCharacteristicEffect(e.target.value)} value={characteristicEffect}/>
       </div>
-      <button className='charAddButton' type='submit' onClick={submitCharacteristicHandler} id='bFinal4'>
-        Agregar
+      <button className='charAddButton frm' type='submit' onClick={submitCharacteristicHandler} id='bFinal4'>
+      <span>Agregar</span>
       </button>
-      <button className='charRandButton' type='submit' onClick={submitCharacteristicHandlerR} id='bRandom4'>
-        Randomize
+      <button className='charRandButton frm' type='submit' onClick={submitCharacteristicHandlerR} id='bRandom4'>
+      <span>Randomizar</span>
       </button>
     </form>
   )

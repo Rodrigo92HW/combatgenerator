@@ -75,11 +75,72 @@ h2.unitList {
   grid-area: list;
 }
 
+/* Codigo General de Ficha*/
+/* Botones */
+button.frm {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: Roboto;
+  font-weight: 700;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  align-self: baseline;
+  align-items: baseline;
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: all .35s;
+  margin: 5px;
+}
+
+span{
+  position: relative;
+  z-index: 2;
+}
+
+button.frm:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: grey;
+  transition: all .35s;
+}
+
+button.frm:hover{
+  color: #fff;
+}
+
+button.frm:hover:after{
+  width: 100%;
+}
+
+button.collapsible {
+  display: flex;
+}
+
+/* Input */
+input[type=number] {
+  width: 33px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /* Unit Container */
 div.unitContainer {
   display: grid;
   size: fit-content;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:  'title  title'
                         'creator setter';
 }
@@ -102,16 +163,22 @@ label.creatingUnit {
 div.unitBuilder {
   grid-area: creator;
   display: grid;
-  size: fit-content;
+  margin-left: 5px;
+  row-gap: 5px;
+  justify-content: space-between;
   grid-template-areas: 'finalcommit'
                        'stars'
-                       'data'
+                       'dataT'
                        'dataextra'
+                       'characteristicT'
                        'characteristic'
+                       'combatT'
                        'combat'
-                       'titlestat'
+                       'statsT'
                        'stats'
-                       'abilities '
+                       'abilitiesT'
+                       'abilities'
+                       'powersT'
                        'powers'
 }
 
@@ -126,52 +193,13 @@ form.finalSubmit {
   justify-content: center;
 }
 
-.finalSubmit button {
-  display: block;
-  width: 200px;
-  height: 30px;
-  line-height: 40px;
-  font-size: 20px;
-  font-family: Roboto;
-  font-weight: 700;
-  text-decoration: none;
-  color: #333;
-  border: 2px solid #333;
-  letter-spacing: 2px;
-  text-align: center;
-  position: relative;
-  align-self: baseline;
-  align-items: baseline;
-  transition: all .35s;
-  margin-left: 2px;
-  padding-bottom: 5px;
-}
-
-.finalSubmit span{
-  position: relative;
-  z-index: 2;
-}
-
-.finalSubmit button:after{
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: grey;
-  transition: all .35s;
-}
-
-.finalSubmit button:hover{
-  color: #fff;
-}
-
-.finalSubmit button:hover:after{
-  width: 100%;
-}
-
+/* ----------------------------------------------------------------------------------------------------------------------- */
 /* Estrellas */
+div.unitStars {
+  display:flex;
+  flex-direction:column;
+}
+
 form.stars {
   display: flex;
   justify-content: center;
@@ -179,18 +207,16 @@ form.stars {
   grid-area: stars;
 }
 
-div.unitStars {
-  display:flex;
-  flex-direction:column;
-}
 div.unitStars form {
   display:flex;
   align-self:center;
   flex-direction:row-reverse;
 }
+
 input.star {
   display: none;
 }
+
 label.star {
   display:inline-block;
   padding: 10px;
@@ -218,6 +244,7 @@ label.star:before {
   font-family: FontAwesome;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------- */
 /* SSS */
 form.special {
   justify-content: center;
@@ -315,25 +342,71 @@ button.special {
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /* Datos de Unidad */
 /* Data Extra */
+div.dataExtra {
+  margin-top: 10px;
+}
+
 form.dataExtra {
   display: grid;
-  justify-content: center;
+  position: relative;
   grid-area: dataextra;
-  grid-template-areas: 'titleD  submitD  randomD'
-                       'nameD nameD nameD'
+  grid-template-areas: 'nameD nameD nameD'
                        'lvlD  typeD sizeD'
                        'inmnuneD  weakD resistD'
                        'conditD conditD perceptionD'
                        'behaiD  behaiD  behaiD'
                        'desciptD  desciptD  desciptD'
+                       'blank  submitD randomD'
+}
+
+div.dataExtra input {
+  width: 85%;
 }
 
 /* Datos Titulo */
-form.dataExtra h1 {
+div.dataTitle {
   grid-area: titleD;
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleDE  showDE';
+}
+
+div.dataTitle h1 {
+  grid-area: titleDE;
   font-size: 20px;
   font-weight: bolder;
   font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentD button.collapsible {
+  grid-area: showDE;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentD {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentD.show {
+  width: fit-content;
+  height: 720px;
+  width: 550px;
+  transition: height ease 0.9s;
 }
 
 /* Botones de Datos de Unidad */
@@ -350,17 +423,26 @@ div.nameStart {
   grid-area: nameD;
 }
 
+div.nameStart input {
+  width: 95%;
+}
+
 /* Nivel */
 div.levelTotal {
   display: flex;
   justify-content: center;
   grid-area: lvlD;
+  margin: auto;
+}
+
+div.levelTotal h2 {
+  margin-right: 5px;
+  text-align: start;
 }
 
 select.level {
   justify-content: center;
   align-self: center;
-  margin-left: 5px;
   width: 50px;
   height: 30px;
   text-align: center;
@@ -393,14 +475,42 @@ div.resiStart {
   grid-area: resistD;
 }
 
+/* Inmunidad a Condición */
+div.immuCondi {
+  grid-area: conditD;
+}
+
+div.immuCondi input {
+  grid-area: conditD;
+  width: 92.5%;
+}
+
+/* Percepción Bonus */
+div.percStart {
+  grid-area: perceptionD;
+}
+
+div.percStart input {
+  grid-area: perceptionD;
+  width: 40px;
+}
+
 /* Comportamiento */
-div.resiStart {
+div.behaStart {
   grid-area: behaiD;
 }
 
+div.behaStart textarea {
+  width: 95%;
+}
+
 /* Descripción */
-div.resiStart {
+div.descStart {
   grid-area: desciptD;
+}
+
+div.descStart textarea {
+  width: 95%;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
@@ -408,36 +518,287 @@ div.resiStart {
 div.Characteristic {
   display: flex;
   grid-area: characteristic;
+  margin-top: 10px;
+}
+
+form.charForm {
+  display: grid;
+  grid-template-areas: 'name  name  uses'
+                       'effect  effect  effect'
+                       'blank submitC randomC';
+}
+
+/* Titulo de Seccion Caracteristica */
+div.dataCar {
+  grid-area: characteristicT;
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleCA  showCA';
+}
+
+div.dataCar h1 {
+  grid-area: titleCA;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentCa button.collapsible {
+  grid-area: showCA;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentCa {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentCa.show {
+  width: fit-content;
+  height: 200px;
+  width: 550px;
+  transition: height ease 0.9s;
+}
+
+/* Botones de Caracteristica */
+button.charAddButton {
+  grid-area: submitC;
+}
+
+button.charRandButton {
+  grid-area: randomC;
+}
+
+/* Nombre Caracteristica */
+div.nameChar {
+  grid-area: name;
+}
+
+/* Uso de Caracteristica */
+div.useChar {
+  grid-area: uses;
+}
+
+/* Efecto de Caracteristica */
+div.effectChar {
+  grid-area: effect;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /* Combate */
 div.Combat {
-  display: grid;
   grid-area: combat;
-  grid-template-areas: 'ofensas defensas  demas';
+  margin-top: 10px;
+  display: grid;
+  grid-template-areas: 'iniTC  iniKC  iniBC'
+                       'evaC armC resC'
+                       'lifeC moveC null'
+                       'accTC accKC accBC'
+                       'dmgTC  dmgKC  dmgBC'
+                       'blank  blank submitCo';
 }
+
+/* Titulo de Seccion Combate */
+div.dataCombat {
+  grid-area: 'combatT';
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleCO  showCO';
+}
+
+div.dataCombat h1 {
+  grid-area: titleCO;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentCo button.collapsible {
+  grid-area: showCO;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentCo {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentCo.show {
+  width: fit-content;
+  height: 200px;
+  width: 550px;
+  transition: height ease 0.9s;
+}
+
+/* Submit Combate */
+div.combatClick {
+  grid-area: submitCo;
+}
+
+/* Iniciativa Combate */
+div.iniTC {
+  grid-area: iniTC;
+}
+
+div.iniKC {
+  grid-area: iniKC;
+}
+
+div.iniEC {
+  grid-area: iniBC;
+}
+
+/* Defensas Combate */
+div.evasion {
+  grid-area: evaC;
+}
+
+div.armor {
+  grid-area: armC;
+}
+
+div.resist {
+  grid-area: resC;
+}
+
+/* Extras Combate */
+div.life {
+  grid-area: lifeC;
+}
+
+div.movement {
+  grid-area: moveC;
+}
+
+/* Presición Combate */
+div.accTC {
+  grid-area: accTC;
+}
+
+div.accKC {
+  grid-area: accKC;
+}
+
+div.accEC {
+  grid-area: accBC;
+}
+
+/* Daño Combate */
+div.dmgTC {
+  grid-area: dmgTC;
+}
+
+div.dmgKC {
+  grid-area: dmgKC;
+}
+
+div.dmgEC {
+  grid-area: dmgBC;
+}
+
 
 /* ----------------------------------------------------------------------------------------------------------------------- */
 /* Estadisticas */
-h1.statsH1 {
-  grid-area: titlestat;
-}
-
 div.unitStats {
   grid-area: stats;
+  margin-top: 10px;
 }
 
 form.Stats {
   display: grid;
-  grid-template-areas: 'body  mind';
+  grid-template-areas: 'body  body  mind  mind'
+                       'blank blank submitS submitR';
 }
 
+/* Titulo de Seccion Estadisticas */
+div.dataStats {
+  grid-area: 'statsT';
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleS  showS';
+}
 
+div.dataStats h1 {
+  grid-area: titleS;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentS button.collapsible {
+  grid-area: showS;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentS {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentS.show {
+  width: fit-content;
+  height: 280px;
+  width: 550px;
+  transition: height ease 0.9s;
+}
+
+/* Botones de Estadisticas de Unidad */
+button.statButtonF {
+  grid-area: submitS;
+}
+
+button.statButtonR {
+  grid-area: submitR;
+}
+
+/* Cuerpo */
 div.Body {
   grid-area: body;
 }
 
+/* Mente */
 div.Mind {
   grid-area: mind;
 }
@@ -446,21 +807,85 @@ div.Mind {
 /* Habilidades */
 div.unitAbilities { 
   grid-area: abilities;
+  margin-top: 10px;
 }
 
 form.Abilities {
   display: grid;
   grid-template-areas: 'abilitiesK abilitiesF abilitiesS'
+                       'blank submitA randomA'
 }
 
+div.unitAbilities label {
+  font-size: 18px;
+}
+
+/* Titulo de Seccion Habilidades */
+div.dataAbilities {
+  grid-area: 'abilitiesT';
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleA  showA';
+}
+
+div.dataAbilities h1 {
+  grid-area: titleA;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentA button.collapsible {
+  grid-area: showA;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentA {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentA.show {
+  width: fit-content;
+  height: 450px;
+  width: 550px;
+  transition: height ease 0.9s;
+}
+
+/* Botones de Habilidades de Unidad */
+button.abilitiesButtonS {
+  grid-area: submitA;
+}
+
+button.abilitiesButtonR {
+  grid-area: randomA;
+}
+
+/* Conocimientos */
 div.Knowledge {
   grid-area: abilitiesK;
 }
 
+/* Proezas */
 div.Feats {
   grid-area: abilitiesF;
 }
 
+/* Sociales */
 div.Socials {
   grid-area: abilitiesS;
 }
@@ -470,6 +895,131 @@ div.Socials {
 div.Powers {
   display: flex;
   grid-area: powers;
+  margin-top: 10px;
+}
+
+form.powerForm {
+  display: grid;
+  grid-template-areas: 'nameP  nameP  elementP'
+                       'usesP usesP usesP'
+                       'distP targeP  duratP'
+                       'dmgP  dmgadP  dmgadP'
+                       'healP  healadP  healadP'
+                       'efct1P  efct2P  efct3P'
+                       'blank  submitP randomP'
+}
+
+/* Titulo de Seccion de Poderes */
+div.dataPowers {
+  grid-area: 'powersT';
+  display: grid;
+  grid-template-columns: 5fr 0.1fr;
+  grid-template-areas: 'titleP  showP';
+}
+
+div.dataPowers h1 {
+  grid-area: titleP;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: Roboto;
+}
+
+/* Esconder Data */
+div.contentP button.collapsible {
+  grid-area: showP;
+  background-color: #777;
+  width: 15px;
+  border: unset;
+  cursor: pointer;
+  font:unset;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+div.contentP {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  border-radius: 5px;
+  height: 30px;
+  width: 550px;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+
+div.contentP.show {
+  width: fit-content;
+  height: 320px;
+  width: 550px;
+  transition: height ease 0.9s;
+}
+
+/* Botones de Poderes de Unidad */
+button.powerAddButton {
+  grid-area: submitP;
+}
+
+button.powerRandButton {
+  grid-area: randomP;
+}
+
+/* Nombre y Elemento */
+div.namePower {
+  grid-area: nameP;
+}
+
+div.typePower {
+  grid-area: elementP;
+}
+
+/* Usos */
+div.usePower {
+  grid-area: usesP;
+}
+
+/* Distanca, Objetivos, Duración */
+div.distancePower {
+  grid-area: distP;
+}
+
+div.targetPower {
+  grid-area: targeP;
+}
+
+div.durationPower {
+  grid-area: duratP;
+}
+
+/* Daño Poder */
+div.dmgPower {
+  grid-area: dmgP;
+}
+
+div.dmgExtraPower {
+  grid-area: dmgadP;
+}
+
+/* Curación Poder */
+div.healPower {
+  grid-area: healP;
+}
+
+div.healExtraPower {
+  grid-area: healadP;
+}
+
+/* Efectos Poder */
+div.effectAPower {
+  grid-area: efct1P;
+}
+
+div.effectBPower {
+  grid-area: efct2P;
+}
+
+div.effectCPower {
+  grid-area: efct3P;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------- */

@@ -222,9 +222,9 @@ function UnitCreation () {
     //Input Handler Datos Adicionales
     const [handleDClick, setHandleDClick] = useState(false);
     const [handleDRClick, setHandleDRClick] = useState(false);
-    let types = _.sampleSize(['Ángel', 'Demonio', 'Bestia', 'Aquas', 'Aberraciones', 'Constructos', 'Tales', 'Humanoides', 'Monstruo', 'Planta', 'Muerto-Viviente', 'Alienígenas'], 1);
+    let sizemod = _.sampleSize(['Enano', 'Pequeño', 'Medio', 'Grande', 'Gigante', 'Colosal'], 1);
+    let types = _.sampleSize(['Ángel', 'Demonio', 'Bestia', 'Aquas', 'Aberraciones', 'Constructos', 'Tales', 'Humanoides', 'Monstruo', 'Planta', 'Muerto-Viviente', 'Alienígenas']);
     const [perceptionBonus, setPerceptionBonus] = useState(0);
-    const [enemyType, setEnemyType] = useState(false);
     let elementsType = _.sampleSize(['Fuego', 'Rayo', 'Agua', 'Hielo', 'Viento', 'Tierra', 'Naturaleza', 'Luz', 'Oscuridad', 'Arcano', 'Fisico', 'Magico'], Math.random() * (4 - 0) + 0);
     const [weak, setWeak] = useState(false);
     const [resistance, setResistance] = useState(false);
@@ -246,20 +246,21 @@ function UnitCreation () {
             setDescription('');
             setBehavior('');
             setPerceptionBonus('');
-            setEnemyType(unitType);
+            setUnitType(unitType);
             setWeak(weakness);
             setImmune(immunities);
             setResistance(resistence);
         } else if(handleDRClick === true) {
             setHandleDRClick('');
-            setEnemyType(types);
-            setSize(_.sampleSize(['Enano', 'Pequeño', 'Medio', 'Grande', 'Gigante', 'Colosal'], 1));
+            setUnitType(types);
+            setSize(sizemod);
             setConditionI(conditionITemp);
             setWeak(elementsType[0]);
             setResistance(elementsType[1]);
             setImmune(elementsType[2]);
         }
     }
+    
 
     //Input Handler Estadisticas
     const [handleClick, setHandleClick] = useState(false);
@@ -562,6 +563,15 @@ function UnitCreation () {
         }
     }
 
+    //Modificador de Display
+    let [displayD, setDisplayD] = useState(false);
+    let [displayCa, setDisplayCa] = useState(false);
+    let [displayCo, setDisplayCo] = useState(false);
+    let [displayS, setDisplayS] = useState(false);
+    let [displayA, setDisplayA] = useState(false);
+    let [displayP, setDisplayP] = useState(false);
+
+
     //Captura de Pantalla
     const doCapture = () => {
         window.scrollTo(0, 0);
@@ -571,12 +581,10 @@ function UnitCreation () {
     }
 
 
-    
     return (
-        <div className='unitContainer'>
-            <label className='creatingUnit'>Crear Unidad</label>
+    <div className='unitContainer'>
+        <label className='creatingUnit'>Crear Unidad</label>
         <div className='unitBuilder'>
-            <div className='unitTitle'>
             <div className='unitStars'>
                 <form className='stars' onSubmit={onStarSubmit}>
                     <input type='radio' name='star' id='star-6' className='star star-6' onClick={() => setStars(6) | setSixStar(!sixStar) | setStarStats(21) | setStarBonus(2) | setStarAttack(3) | setStarDamage(2) | 
@@ -592,22 +600,24 @@ function UnitCreation () {
                     <input type='radio' name='star' id='star-1' className='star star-1' onClick={() => setStars(1) | setOneStar(!oneStar) | setStarStats(5) | setStarBonus(1) | setStarAttack(1) | setStarDamage(0) | 
                         setEspecialState(1)}/><label htmlFor='star-1' className='star s1'></label>                        
                 </form>
-                </div>
+            </div>
             <div className='especial'>
                 <form className='special'  onSubmit={onSpecialSubmit}>
                     <button type='submit' className={specialClass} onClick={() => setEspecial(!especial)}>SSS</button>
                 </form>
-                </div>
+            </div>
+            <div className={true === displayD  ? 'contentD show' : 'contentD'}>
+            <div className='dataTitle'>
+                <h1>Datos Extra</h1><button className='collapsible' onClick={()=> setDisplayD(!displayD)}>V</button>
             </div>
             <div className='dataExtra'>
                 <form className='dataExtra' onSubmit={onSubmitD}>
-                <h1>Datos Extra</h1>
                     <div className='nameStart'>
                     <h2>Nombre</h2>
                     <input type='text' value={unitName} onChange={(e) => setUnitName(e.target.value)}/>
                     </div>
                     <div className='levelTotal'>
-                    <h1 className='level'>Nivel</h1>
+                    <h2>Nivel</h2>
                     <select className='level' type='number' value={level} onChange={(e) => setLevel(e.target.value)}>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
@@ -633,7 +643,20 @@ function UnitCreation () {
                     </div>
                     <div className='typeStart'>
                     <h2>Tipo</h2>
-                    <input type='text' value= {unitType} onChange={(e) => setUnitType(e.target.value)}/>
+                    <select type='text' value= {unitType} onChange={(e) => setUnitType(e.target.value)}>
+                        <option value='Angel'>Ángel</option>
+                        <option value='Demonio'>Demonio</option>
+                        <option value='Bestia'>Bestia</option>
+                        <option value='Aquas'>Aquas</option>
+                        <option value='Aberraciones'>Aberraciones</option>
+                        <option value='Constructos'>Constructos</option>
+                        <option value='Tales'>Tales</option>
+                        <option value='Humanoides'>Humanoides</option>
+                        <option value='Monstruo'>Monstruo</option>
+                        <option value='Planta'>Planta</option>
+                        <option value='Muerto-Viviente'>Muerto-Viviente</option>
+                        <option value='Alienigenas'>Alienígenas</option>
+                    </select>
                     </div>
                     <div className='sizeStart'>
                     <h2>Tamaño</h2>
@@ -659,73 +682,110 @@ function UnitCreation () {
                     <input type='text' value= {immunities} onChange={(e) => setImmunities(e.target.value)}/>
                     </div>
                     <div className='immuCondi'>
-                    <h2>Inmunidad Condición</h2>
+                    <h2>Inmune a</h2>
                     <input type='text' value= {conditionI} onChange={(e) => setConditionI(e.target.value)}/>
                     </div>
                     <div className='percStart'>
                     <h2>Percepción Bonus</h2>
-                    <input type='text' value= {perceptionBonus} onChange={(e) => setPerceptionBonus(e.target.value)}/>
-                    </div>
-                    <div className='descStart'>
-                    <h2>Descripción</h2>
-                    <textarea value= {description} onChange={(e) => setDescription(e.target.value)} cols='30' rows='10'></textarea>
+                    <input type='number' value= {perceptionBonus} onChange={(e) => setPerceptionBonus(e.target.value)}/>
                     </div>
                     <div className='behaStart'>
                     <h2>Comportamiento</h2>
                     <textarea value= {behavior} onChange={(e) => setBehavior(e.target.value)} cols='30' rows='10'></textarea>
                     </div>
-                    <button className='dataButtonF' onClick={() => setHandleDClick(!handleDClick)} id='bFinal1' type='submit'>Do the thing</button>
-                    <button className='dataButtonR' onClick={() => setHandleDRClick(!handleDRClick)} id='bRandom1' type='submit'>Do the random thing</button>
+                    <div className='descStart'>
+                    <h2>Descripción</h2>
+                    <textarea value= {description} onChange={(e) => setDescription(e.target.value)} cols='30' rows='10'></textarea>
+                    </div>
+                    <button className='dataButtonF frm' onClick={() => setHandleDClick(!handleDClick)} id='bFinal1' type='submit'><span>Aplicar</span></button>
+                    <button className='dataButtonR frm' onClick={() => setHandleDRClick(!handleDRClick)} id='bRandom1' type='submit'><span>Randomizar</span></button>
                 </form>
+                </div>
+            </div>
+            <div className={true === displayCa  ? 'contentCa show' : 'contentCa'}>
+            <div className='dataCar'>
+                <h1>Caracteristica</h1><button className='collapsible' onClick={()=> setDisplayCa(!displayCa)}>V</button>
             </div>
             <div className='Characteristic'>
-                <h1>Caracteristicas</h1>
                 <CharacteristicForm
                 characteristic={characteristic} setCharacteristic={setCharacteristic}
                 characteristicName={characteristicName} setCharacteristicName={setCharacteristicName}
                 characteristicEffect={characteristicEffect} setCharacteristicEffect={setCharacteristicEffect}
                 characteristicUses={characteristicUses} setCharacteristicUses={setCharacteristicUses}
                 />
+            </div></div>
+            <div className={true === displayCo  ? 'contentCo show' : 'contentCo'}>
+            <div className='dataCombat'>
+                <h1>Combate</h1><button className='collapsible' onClick={()=> setDisplayCo(!displayCo)}>V</button>
             </div>
-            <div className='Combat'>
-                <h1 className='Combat'>Combate</h1>
                 <form className='Combat' onSubmit={onSubmitC}>
+                <div className='Combat'>
                     <div className='life'>
+                    <label>Vida Extra</label>
                     <input type='number' value={lifeExtra} onChange={(e) => setLifeExtra(e.target.value)}/>
                     </div>
-                    <div className='iniciative'>
+                    <div className='iniTC'> 
+                    <label>Iniciativa Tirada</label>
                     <input type='number' value={iniciativeTExtra} onChange={(e) => setIniciativeTExtra(e.target.value)}/>
+                    </div>
+                    <div className='iniKC'> 
+                    <label>Iniciativa Guardada</label>
                     <input type='number' value={iniciativeKExtra} onChange={(e) => setIniciativeKExtra(e.target.value)}/>
+                    </div>
+                    <div className='iniEC'> 
+                    <label>Iniciativa Fija</label>
                     <input type='number' value={iniciativeExtra} onChange={(e) => setIniciativeExtra(e.target.value)}/>
                     </div>
                     <div className='evasion'>
+                    <label>Evasión Extra</label>
                     <input type='number' value={evasionExtra} onChange={(e) => setEvasionExtra(e.target.value)}/>
                     </div>
                     <div className='armor'>
+                    <label>Armadura Extra</label>
                     <input type='number' value={armorExtra} onChange={(e) => setArmorExtra(e.target.value)}/>
                     </div>
                     <div className='resist'>
+                    <label>Resistencia Extra</label>
                     <input type='number' value={resistExtra} onChange={(e) => setResistExtra(e.target.value)}/>
                     </div>
                     <div className='movement'>
+                    <label>Movimiento Extra</label>
                     <input type='number' value={movementExtra} onChange={(e) => setMovementExtra(e.target.value)}/>
                     </div>
-                    <div className='acc'>
+                    <div className='accTC'>
+                    <label>Presición Tirada</label>
                     <input type='number' value={attackTExtra} onChange={(e) => setAttackTExtra(e.target.value)}/>
+                    </div>
+                    <div className='accKC'>
+                    <label>Presición Guardada</label>
                     <input type='number' value={attackKExtra} onChange={(e) => setAttackKExtra(e.target.value)}/>
+                    </div>
+                    <div className='accEC'>
+                    <label>Presición Extra</label>
                     <input type='number' value={attackBonus} onChange={(e) => setAttackBonus(e.target.value)}/>
                     </div>
-                    <div className='dmg'>
+                    <div className='dmgTC'>
+                    <label>Daño Tirada</label>
                     <input type='number' value={damageTExtra} onChange={(e) => setDamageTExtra(e.target.value)}/>
+                    </div>
+                    <div className='dmgKC'>
+                    <label>Daño Guardada</label>
                     <input type='number' value={damageKExtra} onChange={(e) => setDamageKExtra(e.target.value)}/>
+                    </div>
+                    <div className='dmgEC'>
+                    <label>Daño Extra</label>
                     <input type='number' value={damageBonus} onChange={(e) => setDamageBonus(e.target.value)}/>
                     </div>
+                    
                     <div className='combatClick'>
-                    <button onClick={() => setHandleCClick(!handleCClick)} type='submit'>Do the thing</button>
+                    <button className='combatButtonF frm' onClick={() => setHandleCClick(!handleCClick)} type='submit'><span>Aplicar</span></button>
                     </div>
-                </form>
+                </div>
+            </form></div>
+            <div className={true === displayS  ? 'contentS show' : 'contentS'}>
+                <div className='dataStats'>
+                <h1>Estadisticas</h1><button className='collapsible' onClick={()=> setDisplayS(!displayS)}>V</button>
             </div>
-            <h1 className='statsH1'>Estadisticas</h1>
             <div className='unitStats'>
                 <form className='Stats' onSubmit={onSubmit}>
                 <div className='Body'>
@@ -744,91 +804,98 @@ function UnitCreation () {
                     <h2>Carisma</h2>
                     <input type='number' placeholder='1' value={cha} onChange={(e) => setCha(e.target.value)}></input>
                 </div>
-                <button onClick={() => setHandleClick(!handleClick)} id='bFinal2' type='submit'>Do the thing</button>
-                <button onClick={() => setHandleRandomClick(!handleRandomClick)} id='bRandom2' type='submit'>Do the Random thing</button>
+                <button className='statButtonF frm' onClick={() => setHandleClick(!handleClick)} id='bFinal2' type='submit'><span>Aplicar</span></button>
+                <button className='statButtonR frm' onClick={() => setHandleRandomClick(!handleRandomClick)} id='bRandom2' type='submit'><span>Randomizar</span></button>
                 </form> 
+            </div></div>
+            <div className={true === displayA  ? 'contentA show' : 'contentA'}>
+            <div className='dataAbilities'>
+                <h1>Habilidades</h1><button className='collapsible' onClick={()=> setDisplayA(!displayA)}>V</button>
             </div>
             <div className='unitAbilities'>
-            <h1>Habilidades</h1>
             <form className='Abilities' onSubmit={onSubmitH}>
                     <div className='Knowledge'>
                     <h2 className='Knowledge'>Conocimientos</h2>
-                        <h3>Academisismo</h3>
-                        <input type='number' placeholder='1' value={aca} onChange={(e) => setAca(e.target.value)}></input>
-                        <h3>Alquimia</h3>
-                        <input type='number' placeholder='1' value={alq} onChange={(e) => setAlq(e.target.value)}></input>
-                        <h3>Hechicería</h3>
-                        <input type='number' placeholder='1' value={hec} onChange={(e) => setHec(e.target.value)}></input>
-                        <h3>Informática</h3>
-                        <input type='number' placeholder='1' value={inf} onChange={(e) => setInf(e.target.value)}></input>
-                        <h3>Investigación</h3>
-                        <input type='number' placeholder='1' value={inv} onChange={(e) => setInv(e.target.value)}></input>
-                        <h3>Lingüística</h3>
-                        <input type='number' placeholder='1' value={lin} onChange={(e) => setLin(e.target.value)}></input>
-                        <h3>Medicina</h3>
-                        <input type='number' placeholder='1' value={med} onChange={(e) => setMed(e.target.value)}></input>
-                        <h3>Ocultismo</h3>
-                        <input type='number' placeholder='1' value={ocu} onChange={(e) => setOcu(e.target.value)}></input>
-                        <h3>Teología</h3>
-                        <input type='number' placeholder='1' value={teo} onChange={(e) => setTeo(e.target.value)}></input>
-                        <h3>Trato con Animales</h3>
-                        <input type='number' placeholder='1' value={tca} onChange={(e) => setTca(e.target.value)}></input>
-                        <h3>Venenos</h3>
-                        <input type='number' placeholder='1' value={ven} onChange={(e) => setVen(e.target.value)}></input>
+                        <label>Academisismo</label>
+                        <input type='number' placeholder='1' value={aca} onChange={(e) => setAca(e.target.value)}></input><br />
+                        <label>Alquimia</label>
+                        <input type='number' placeholder='1' value={alq} onChange={(e) => setAlq(e.target.value)}></input><br />
+                        <label>Hechicería</label>
+                        <input type='number' placeholder='1' value={hec} onChange={(e) => setHec(e.target.value)}></input><br />
+                        <label>Informática</label>
+                        <input type='number' placeholder='1' value={inf} onChange={(e) => setInf(e.target.value)}></input><br />
+                        <label>Investigación</label>
+                        <input type='number' placeholder='1' value={inv} onChange={(e) => setInv(e.target.value)}></input><br />
+                        <label>Lingüística</label>
+                        <input type='number' placeholder='1' value={lin} onChange={(e) => setLin(e.target.value)}></input><br />
+                        <label>Medicina</label>
+                        <input type='number' placeholder='1' value={med} onChange={(e) => setMed(e.target.value)}></input><br />
+                        <label>Ocultismo</label>
+                        <input type='number' placeholder='1' value={ocu} onChange={(e) => setOcu(e.target.value)}></input><br />
+                        <label>Teología</label>
+                        <input type='number' placeholder='1' value={teo} onChange={(e) => setTeo(e.target.value)}></input><br />
+                        <label>Trato con Animales</label>
+                        <input type='number' placeholder='1' value={tca} onChange={(e) => setTca(e.target.value)}></input><br />
+                        <label>Venenos</label>
+                        <input type='number' placeholder='1' value={ven} onChange={(e) => setVen(e.target.value)}></input><br />
                     </div>
                     <div className='Feats'>
                     <h2 className='Feats'>Proezas</h2>
-                        <h3>Alerta</h3>
-                        <input type='number' placeholder='1' value={ale} onChange={(e) => setAle(e.target.value)}></input>
-                        <h3>Atletismo</h3>
-                        <input type='number' placeholder='1' value={atl} onChange={(e) => setAtl(e.target.value)}></input>
-                        <h3>Armas</h3>
-                        <input type='number' placeholder='1' value={arm} onChange={(e) => setArm(e.target.value)}></input>
-                        <h3>Batalla</h3>
-                        <input type='number' placeholder='1' value={bat} onChange={(e) => setBat(e.target.value)}></input>
-                        <h3>Concentración</h3>
-                        <input type='number' placeholder='1' value={conc} onChange={(e) => setConc(e.target.value)}></input>
-                        <h3>Conducir</h3>
-                        <input type='number' placeholder='1' value={cond} onChange={(e) => setCond(e.target.value)}></input>
-                        <h3>Defensa</h3>
-                        <input type='number' placeholder='1' value={def} onChange={(e) => setDef(e.target.value)}></input>
-                        <h3>Equitación</h3>
-                        <input type='number' placeholder='1' value={equ} onChange={(e) => setEqu(e.target.value)}></input>
-                        <h3>Herrería</h3>
-                        <input type='number' placeholder='1' value={her} onChange={(e) => setHer(e.target.value)}></input>
-                        <h3>Intimidación</h3>
-                        <input type='number' placeholder='1' value={inti} onChange={(e) => setInti(e.target.value)}></input>
-                        <h3>Mecánica</h3>
-                        <input type='number' placeholder='1' value={mec} onChange={(e) => setMec(e.target.value)}></input>
-                        <h3>Pericias</h3>
-                        <input type='number' placeholder='1' value={per} onChange={(e) => setPer(e.target.value)}></input>
-                        <h3>Sigilo</h3>
-                        <input type='number' placeholder='1' value={sig} onChange={(e) => setSig(e.target.value)}></input>
-                        <h3>Supervivencia</h3>
-                        <input type='number' placeholder='1' value={sup} onChange={(e) => setSup(e.target.value)}></input>
+                        <label>Alerta</label>
+                        <input type='number' placeholder='1' value={ale} onChange={(e) => setAle(e.target.value)}></input><br />
+                        <label>Atletismo</label>
+                        <input type='number' placeholder='1' value={atl} onChange={(e) => setAtl(e.target.value)}></input><br />
+                        <label>Armas</label>
+                        <input type='number' placeholder='1' value={arm} onChange={(e) => setArm(e.target.value)}></input><br />
+                        <label>Batalla</label>
+                        <input type='number' placeholder='1' value={bat} onChange={(e) => setBat(e.target.value)}></input><br />
+                        <label>Concentración</label>
+                        <input type='number' placeholder='1' value={conc} onChange={(e) => setConc(e.target.value)}></input><br />
+                        <label>Conducir</label>
+                        <input type='number' placeholder='1' value={cond} onChange={(e) => setCond(e.target.value)}></input><br />
+                        <label>Defensa</label>
+                        <input type='number' placeholder='1' value={def} onChange={(e) => setDef(e.target.value)}></input><br />
+                        <label>Equitación</label>
+                        <input type='number' placeholder='1' value={equ} onChange={(e) => setEqu(e.target.value)}></input><br />
+                        <label>Herrería</label>
+                        <input type='number' placeholder='1' value={her} onChange={(e) => setHer(e.target.value)}></input><br />
+                        <label>Intimidación</label>
+                        <input type='number' placeholder='1' value={inti} onChange={(e) => setInti(e.target.value)}></input><br />
+                        <label>Mecánica</label>
+                        <input type='number' placeholder='1' value={mec} onChange={(e) => setMec(e.target.value)}></input><br />
+                        <label>Pericias</label>
+                        <input type='number' placeholder='1' value={per} onChange={(e) => setPer(e.target.value)}></input><br />
+                        <label>Sigilo</label>
+                        <input type='number' placeholder='1' value={sig} onChange={(e) => setSig(e.target.value)}></input><br />
+                        <label>Supervivencia</label>
+                        <input type='number' placeholder='1' value={sup} onChange={(e) => setSup(e.target.value)}></input><br />
                     </div>
                     <div className='Socials'>
                     <h2 className='Socials'>Sociales</h2>
-                        <h3>Cocina</h3>
-                        <input type='number' placeholder='1' value={coc} onChange={(e) => setCoc(e.target.value)}></input>
-                        <h3>Comercio</h3>
-                        <input type='number' placeholder='1' value={com} onChange={(e) => setCom(e.target.value)}></input>
-                        <h3>Cultura</h3>
-                        <input type='number' placeholder='1' value={cul} onChange={(e) => setCul(e.target.value)}></input>
-                        <h3>Empatía</h3>
-                        <input type='number' placeholder='1' value={emp} onChange={(e) => setEmp(e.target.value)}></input>
-                        <h3>Etiqueta</h3>
-                        <input type='number' placeholder='1' value={eti} onChange={(e) => setEti(e.target.value)}></input>
-                        <h3>Interpretación</h3>
-                        <input type='number' placeholder='1' value={inte} onChange={(e) => setInte(e.target.value)}></input>
-                        <h3>Liderazgo</h3>
-                        <input type='number' placeholder='1' value={lid} onChange={(e) => setLid(e.target.value)}></input>
-                        <h3>Subterfugio</h3>
-                        <input type='number' placeholder='1' value={sub} onChange={(e) => setSub(e.target.value)}></input>
+                        <label>Cocina</label>
+                        <input type='number' placeholder='1' value={coc} onChange={(e) => setCoc(e.target.value)}></input><br />
+                        <label>Comercio</label>
+                        <input type='number' placeholder='1' value={com} onChange={(e) => setCom(e.target.value)}></input><br />
+                        <label>Cultura</label>
+                        <input type='number' placeholder='1' value={cul} onChange={(e) => setCul(e.target.value)}></input><br />
+                        <label>Empatía</label>
+                        <input type='number' placeholder='1' value={emp} onChange={(e) => setEmp(e.target.value)}></input><br />
+                        <label>Etiqueta</label>
+                        <input type='number' placeholder='1' value={eti} onChange={(e) => setEti(e.target.value)}></input><br />
+                        <label>Interpretación</label>
+                        <input type='number' placeholder='1' value={inte} onChange={(e) => setInte(e.target.value)}></input><br />
+                        <label>Liderazgo</label>
+                        <input type='number' placeholder='1' value={lid} onChange={(e) => setLid(e.target.value)}></input><br />
+                        <label>Subterfugio</label>
+                        <input type='number' placeholder='1' value={sub} onChange={(e) => setSub(e.target.value)}></input><br />
                     </div>
-                    <button onClick={() => setHandleHClick(!handleHClick)} type='submit' id='bFinal3'>Do the thing</button>
-                    <button onClick={() => setHandleHRandomClick(!handleHRandomClick)} type='submit' id='bRandom3'>Do the Random thing</button>
+                    <button className='abilitiesButtonS frm' onClick={() => setHandleHClick(!handleHClick)} type='submit' id='bFinal3'><span>Aplicar</span></button>
+                    <button className='abilitiesButtonR frm' onClick={() => setHandleHRandomClick(!handleHRandomClick)} type='submit' id='bRandom3'><span>Randomizar</span></button>
             </form> 
+            </div></div>
+            <div className={true === displayP  ? 'contentP show' : 'contentP'}>
+            <div className='dataPowers'>
+                <h1>Poderes</h1><button className='collapsible' onClick={()=> setDisplayP(!displayP)}>V</button>
             </div>
             <div className='Powers'>
                 <PowerForm
@@ -849,22 +916,22 @@ function UnitCreation () {
                 powerEffect4={powerEffect4} setPowerEffect4={setPowerEffect4}
                 starDamage={starDamage} setStarDamage={setStarDamage}
                 />
-                </div>
+            </div></div>
             <div className='finalSubmit'>
                 <form className='finalSubmit' onSubmit={onFinalSubmit}>
-                    <button onClick={() => setFinalSubmiter(!finalSubmiter) | document.getElementById('bFinal1').click() | document.getElementById('bFinal2').click()
+                    <button className='frm' onClick={() => setFinalSubmiter(!finalSubmiter) | document.getElementById('bFinal1').click() | document.getElementById('bFinal2').click()
                  | document.getElementById('bFinal3').click() | document.getElementById('bFinal4').click() | document.getElementById('bFinal5').click()}><span>Submitear Todo</span></button>
-                    <button onClick={() => setFinalRandomizer(!finalRandomizer) | document.getElementById('bRandom1').click() | document.getElementById('bRandom2').click()
+                    <button className='frm' onClick={() => setFinalRandomizer(!finalRandomizer) | document.getElementById('bRandom1').click() | document.getElementById('bRandom2').click()
                  | document.getElementById('bRandom3').click() | document.getElementById('bRandom4').click() | document.getElementById('bRandom5').click()}><span>Randomizar Todo</span></button>
                 </form>
-                </div>
+            </div>
         </div>
         <div className='finalSheet' id='saveData'>
     <h1 className='dataF'>Datos</h1>
         <div className='nameF'>Nombre: {unitName}</div>
         <div className='starF'>{stars}</div>
         <div className='specF'>{especial}</div>
-        <div className='typeF'>Tipo: {enemyType}</div>
+        <div className='typeF'>Tipo: {unitType}</div>
         <div className='sizeF'>Tamaño: {size}</div>
         <div className='weakF'>Debilidad: {weak}</div>
         <div className='resiF'>Resistencia: {resistance}</div>
@@ -979,9 +1046,9 @@ function UnitCreation () {
     <h1 className='poweF'>Poderes</h1>
     <PowerHandler powers={powers} setPowers={setPowers} /> 
     </div>
-    </div>
-    <button  className='submF' onClick={doCapture}>Guardar</button>
         </div>
+        <button  className='submF' onClick={doCapture}>Guardar</button>
+    </div>
     );
 }
 
