@@ -12,7 +12,7 @@ function CharacteristicRender ({name, uses, effect, char, characteristic, setCha
           <div className='charName'>{name}</div>
           <div className='charUses'>{uses}</div>
           <div className='charEffect'>{effect}</div>
-          <button onClick={deleteHandlerChar}>Trash</button>
+          <button onClick={deleteHandlerChar}></button>
       </div>
     )
   }

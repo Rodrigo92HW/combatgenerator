@@ -4,7 +4,10 @@ import PowerForm from './power/PowerForm';
 import PowerHandler from './power/PowerHandler';
 import CharacteristicForm from './characteristic/CharacteristicForm';
 import CharacteristicHandler from './characteristic/CharacteristicHandler';
+import SpecialtyForm from './special/SpecialtyForm';
+import SpecialtyHandler from './special/SpecialtyHandler';
 import html2canvas from 'html2canvas';
+
 
 //Funcion que se encarga de crear las Unidades y la Interfaz
 function UnitCreation () {
@@ -299,6 +302,16 @@ function UnitCreation () {
 
     const onSubmitH = (e) => {
         e.preventDefault();
+        var E = document.getElementsByClassName('hab r');
+        var m = E.length;
+        var n1 = parseInt(Math.random()*m);
+        var n2 = parseInt(Math.random()*m);
+        var n3 = parseInt(Math.random()*m);
+        var n4 = parseInt(Math.random()*m);
+        var n5 = parseInt(Math.random()*m);
+        var n6 = parseInt(Math.random()*m);
+        var n7 = parseInt(Math.random()*m);
+        var n8 = parseInt(Math.random()*m);
         if(handleHClick === true) {
             setHandleHClick('');
             setAcaF(aca);
@@ -402,6 +415,18 @@ function UnitCreation () {
             setInteR(Math.floor(Math.random() * (Math.ceil(starStats/1.9) - (Math.ceil(starStats/3.2)))) + (Math.ceil(starStats/3.2)));
             setLidR(Math.floor(Math.random() * (Math.ceil(starStats/1.9) - (Math.ceil(starStats/3.2)))) + (Math.ceil(starStats/3.2)));
             setSubR(Math.floor(Math.random() * (Math.ceil(starStats/1.9) - (Math.ceil(starStats/3.2)))) + (Math.ceil(starStats/3.2)));
+            for (var i=m-1;i>=0;i--) {
+                var s = E[i];
+                s.style.display='none';
+            }
+        E[n1].style.display='flex';
+        E[n2].style.display='flex';
+        E[n3].style.display='flex';
+        E[n4].style.display='flex';
+        E[n5].style.display='flex';
+        E[n6].style.display='flex';
+        E[n7].style.display='flex';
+        E[n8].style.display='flex';
         }
     }
 
@@ -484,7 +509,7 @@ function UnitCreation () {
         //Iniciativa
         const iniciativeBonus = Math.max(statsF[1], statsR[1], 1) + Number(iniciativeExtraF);
         //Movimiento
-        const movement = Math.max(4, (Math.max(statsF[1], statsR[1]) + Math.max(atlF/2, atlR/2) + Number(movementExtraF)));
+        const movement = Math.floor(Math.max(4, (Math.max(statsF[1], statsR[1]) + Math.max(atlF/2, atlR/2) + Number(movementExtraF))));
         //Evasion
         const evasion = Math.max(statsF[1]*5, statsR[1]*5, 5) + Number(evasionExtraF);
         //Armadura
@@ -525,6 +550,14 @@ function UnitCreation () {
     const [characteristicUses, setCharacteristicUses] = useState();
     const [characteristicEffect, setCharacteristicEffect] = useState();
 
+    //Constructor de Especiales
+    const [specialty, setSpecialty] = useState([]);
+    const [specialtyName, setSpecialtyName] = useState();
+    const [specialtyRequiere, setSpecialtyRequiere] = useState();
+    const [specialtyCost, setSpecialtyCost] = useState();
+    const [specialtyEffect, setSpecialtyEffect] = useState();
+
+
     //Datos Adicionales de Unidades
     const [unitName, setUnitName] = useState();
     const [unitType, setUnitType] = useState();
@@ -540,7 +573,7 @@ function UnitCreation () {
     const [finalSubmiter, setFinalSubmiter] = useState(false);
     const [finalRandomizer, setFinalRandomizer] = useState(false);
 
-    const onFinalSubmit = (e) => {
+    const onFinalSubmit = (e) =>  {
         e.preventDefault();
         if (finalSubmiter === true) {
             document.getElementById('bFinal1').click();
@@ -548,28 +581,33 @@ function UnitCreation () {
             document.getElementById('bFinal3').click();
             document.getElementById('bFinal4').click();
             document.getElementById('bFinal5').click();
+            document.getElementById('bFinal6').click();
             setFinalSubmiter(false);
         } else if (finalRandomizer === true) {
             document.getElementById('bRandom1').click();
             document.getElementById('bRandom2').click();
             document.getElementById('bRandom3').click();
-            document.getElementById('bRandom4').click();
             document.getElementById('bRandom5').click();
-//            setStars(Math.floor(Math.random() * (6 + 1) + 1))
             document.getElementById('bFinal5').click();
+//          setStars(Math.floor(Math.random() * (6 + 1) + 1))
             setFinalRandomizer(false);
         } else {
             console.log('Error404');
         }
     }
 
-    //Modificador de Display
+    //Modificadores de Display
     let [displayD, setDisplayD] = useState(false);
     let [displayCa, setDisplayCa] = useState(false);
     let [displayCo, setDisplayCo] = useState(false);
     let [displayS, setDisplayS] = useState(false);
     let [displayA, setDisplayA] = useState(false);
     let [displayP, setDisplayP] = useState(false);
+    let [displaySp, setDisplaySp] = useState(false);
+    let [displaySpe, setDisplaySpe] = useState(false);
+    let starDisplay =  'star' + stars;
+    let especialDisplay = 'special ' + especial;
+    
 
 
     //Captura de Pantalla
@@ -577,9 +615,13 @@ function UnitCreation () {
         window.scrollTo(0, 0);
         html2canvas(document.getElementById('saveData')).then(function (canvas) {
             console.log(canvas.toDataURL('image/jpg', 0.9));
+            var a = document.createElement('a');
+        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+        a.download = unitName + '.jpg';
+        a.click();
         })
     }
-
 
     return (
     <div className='unitContainer'>
@@ -603,7 +645,7 @@ function UnitCreation () {
             </div>
             <div className='especial'>
                 <form className='special'  onSubmit={onSpecialSubmit}>
-                    <button type='submit' className={specialClass} onClick={() => setEspecial(!especial)}>SSS</button>
+                    <button type='submit' className={specialClass} onClick={() => setEspecial(!especial) | setDisplaySp(!displaySp)}>SSS</button>
                 </form>
             </div>
             <div className={true === displayD  ? 'contentD show' : 'contentD'}>
@@ -642,7 +684,7 @@ function UnitCreation () {
                     </select>
                     </div>
                     <div className='typeStart'>
-                    <h2>Tipo</h2>
+                    <h2>Especie</h2>
                     <select type='text' value= {unitType} onChange={(e) => setUnitType(e.target.value)}>
                         <option value='Angel'>Ángel</option>
                         <option value='Demonio'>Demonio</option>
@@ -697,8 +739,10 @@ function UnitCreation () {
                     <h2>Descripción</h2>
                     <textarea value= {description} onChange={(e) => setDescription(e.target.value)} cols='30' rows='10'></textarea>
                     </div>
+                    <div className='buttondata'>
                     <button className='dataButtonF frm' onClick={() => setHandleDClick(!handleDClick)} id='bFinal1' type='submit'><span>Aplicar</span></button>
                     <button className='dataButtonR frm' onClick={() => setHandleDRClick(!handleDRClick)} id='bRandom1' type='submit'><span>Randomizar</span></button>
+                    </div>
                 </form>
                 </div>
             </div>
@@ -776,7 +820,6 @@ function UnitCreation () {
                     <label>Daño Extra</label>
                     <input type='number' value={damageBonus} onChange={(e) => setDamageBonus(e.target.value)}/>
                     </div>
-                    
                     <div className='combatClick'>
                     <button className='combatButtonF frm' onClick={() => setHandleCClick(!handleCClick)} type='submit'><span>Aplicar</span></button>
                     </div>
@@ -789,19 +832,19 @@ function UnitCreation () {
             <div className='unitStats'>
                 <form className='Stats' onSubmit={onSubmit}>
                 <div className='Body'>
-                    <h2>Fuerza</h2>
+                    <label>Fuerza</label>
                     <input type='number' placeholder='1' value={str} onChange={(e) => setStr(e.target.value)}></input>
-                    <h2>Destreza</h2>
+                    <label>Destreza</label>
                     <input type='number' placeholder='1' value={dex} onChange={(e) => setDex(e.target.value)}></input>
-                    <h2>Constitución</h2>
+                    <label>Constitución</label>
                     <input type='number' placeholder='1' value={con} onChange={(e) => setCon(e.target.value)}></input>
                 </div>
                 <div className='Mind'>
-                    <h2>Inteligencia</h2>
+                    <label>Inteligencia</label>
                     <input type='number' placeholder='1' value={int} onChange={(e) => setInt(e.target.value)}></input>
-                    <h2>Voluntad</h2>
+                    <label>Voluntad</label>
                     <input type='number' placeholder='1' value={will} onChange={(e) => setWill(e.target.value)}></input>
-                    <h2>Carisma</h2>
+                    <label>Carisma</label>
                     <input type='number' placeholder='1' value={cha} onChange={(e) => setCha(e.target.value)}></input>
                 </div>
                 <button className='statButtonF frm' onClick={() => setHandleClick(!handleClick)} id='bFinal2' type='submit'><span>Aplicar</span></button>
@@ -834,7 +877,7 @@ function UnitCreation () {
                         <input type='number' placeholder='1' value={ocu} onChange={(e) => setOcu(e.target.value)}></input><br />
                         <label>Teología</label>
                         <input type='number' placeholder='1' value={teo} onChange={(e) => setTeo(e.target.value)}></input><br />
-                        <label>Trato con Animales</label>
+                        <label>Trato con Anim</label>
                         <input type='number' placeholder='1' value={tca} onChange={(e) => setTca(e.target.value)}></input><br />
                         <label>Venenos</label>
                         <input type='number' placeholder='1' value={ven} onChange={(e) => setVen(e.target.value)}></input><br />
@@ -917,135 +960,158 @@ function UnitCreation () {
                 starDamage={starDamage} setStarDamage={setStarDamage}
                 />
             </div></div>
+            <div style={true <= displaySp ? {display:''}:{display:'none'}}>
+            <div className={true === displaySpe  ? 'contentSpe show' : 'contentSpe'}>
+            <div className='specialTitle'>
+                <h1>Especial</h1><button className='collapsible' onClick={()=> setDisplaySpe(!displaySpe)}>V</button>
+            </div>
+            <div className='specialF'>
+                <SpecialtyForm
+                specialty={specialty} setSpecialty={setSpecialty}
+                specialtyName={specialtyName} setSpecialtyName={setSpecialtyName}
+                specialtyRequiere={specialtyRequiere} setSpecialtyRequiere={setSpecialtyRequiere}
+                specialtyCost={specialtyCost} setSpecialtyCost={setSpecialtyCost}
+                specialtyEffect={specialtyEffect} setSpecialtyEffect={setSpecialtyEffect}
+                />
+            </div>
+            </div>
+            </div>
             <div className='finalSubmit'>
                 <form className='finalSubmit' onSubmit={onFinalSubmit}>
-                    <button className='frm' onClick={() => setFinalSubmiter(!finalSubmiter) | document.getElementById('bFinal1').click() | document.getElementById('bFinal2').click()
-                 | document.getElementById('bFinal3').click() | document.getElementById('bFinal4').click() | document.getElementById('bFinal5').click()}><span>Submitear Todo</span></button>
+                    <button className='frm' id='finalButton' onClick={() => setFinalSubmiter(!finalSubmiter) | document.getElementById('bFinal1').click() | document.getElementById('bFinal2').click()
+                 | document.getElementById('bFinal3').click() | document.getElementById('bFinal4').click() | document.getElementById('bFinal5').click()
+                 | document.getElementById('bFinal6').click()}><span>Submitear Todo</span></button>
                     <button className='frm' onClick={() => setFinalRandomizer(!finalRandomizer) | document.getElementById('bRandom1').click() | document.getElementById('bRandom2').click()
-                 | document.getElementById('bRandom3').click() | document.getElementById('bRandom4').click() | document.getElementById('bRandom5').click()}><span>Randomizar Todo</span></button>
+                 | document.getElementById('bRandom3').click() | document.getElementById('bRandom4').click() | document.getElementById('bRandom5').click()
+                 | document.getElementById('bRandom6').click() }><span>Randomizar Todo</span></button>
                 </form>
             </div>
         </div>
+    <div className={especialDisplay}>
         <div className='finalSheet' id='saveData'>
-    <h1 className='dataF'>Datos</h1>
-        <div className='nameF'>Nombre: {unitName}</div>
-        <div className='starF'>{stars}</div>
-        <div className='specF'>{especial}</div>
-        <div className='typeF'>Tipo: {unitType}</div>
-        <div className='sizeF'>Tamaño: {size}</div>
-        <div className='weakF'>Debilidad: {weak}</div>
-        <div className='resiF'>Resistencia: {resistance}</div>
-        <div className='imnuF'>Inmunidad: {immune}</div>
-        <div className='condF'>Condicion Inmunidad: {conditionI}</div>
-        <div className='pperpF'>Percepción Pasiva: {passivePerception}</div>
-        <div className='descF'>Descripción: {description}</div>
-        <div className='behaF'>Comportamiento: {behavior} </div>
+        <div className='nameF'><h1>{unitName}</h1></div>
+        <div className='finalStars'><div className={starDisplay}></div></div>
+        <div className='leftSide'>
+    <div className='informF'>
+    <h1>Información</h1>
+        <div className='typeF'><span className='in'>Especie:</span><span className='inD'>{unitType}</span></div>
+        <div className='sizeF'><span className='in'>Tamaño:</span><span className='inD'>{size}</span></div>
+        <div className='weakF'><span className='in'>Debilidad:</span><span className='inD'>{weak}</span></div>
+        <div className='resiF'><span className='in'>Resistencia:</span><span className='inD'>{resistance}</span></div>
+        <div className='imnuF'><span className='in'>Inmunidad:</span><span className='inD'>{immune}</span></div>
+        <div className='condF'><span className='in'>Inmune a:</span><span className='inD'>{conditionI}</span></div>
+        <div className='pperpF'><span className='in'>Percepción:</span><span className='inD'>{passivePerception}</span></div>
+    </div>
     <h1 className='caraF'>Caracteristicas</h1>
-        <div>Caracteristica: <CharacteristicHandler characteristic={characteristic} setCharacteristic={setCharacteristic}/></div>
-    <h1 className='statF'>Estadisticas</h1>
-        <div className='strF' style={statsF[0] <= statsR[0] ? {display:'none'}:{display:'flex'}}>Fuerza: {statsF[0]}</div>
-        <div className='dexF' style={statsF[1] <= statsR[1] ? {display:'none'}:{display:'flex'}}>Destreza: {statsF[1]}</div>
-        <div className='conF' style={statsF[2] <= statsR[2] ? {display:'none'}:{display:'flex'}}>Constitución: {statsF[2]}</div>
-        <div className='intF' style={statsF[3] <= statsR[3] ? {display:'none'}:{display:'flex'}}>Inteligencia: {statsF[3]}</div>
-        <div className='wilF' style={statsF[4] <= statsR[4] ? {display:'none'}:{display:'flex'}}>Voluntad: {statsF[4]}</div>
-        <div className='carF' style={statsF[5] <= statsR[5] ? {display:'none'}:{display:'flex'}}>Carisma: {statsF[5]}</div>
-        <div className='strF' style={statsF[0] > statsR[0] ? {display:'none'}:{display:'flex'}}>Fuerza: {statsR[0]}</div>
-        <div className='dexF' style={statsF[1] > statsR[1] ? {display:'none'}:{display:'flex'}}>Destreza: {statsR[1]}</div>
-        <div className='conF' style={statsF[2] > statsR[2] ? {display:'none'}:{display:'flex'}}>Constitución: {statsR[2]}</div>
-        <div className='intF' style={statsF[3] > statsR[3] ? {display:'none'}:{display:'flex'}}>Inteligencia: {statsR[3]}</div>
-        <div className='wilF' style={statsF[4] > statsR[4] ? {display:'none'}:{display:'flex'}}>Voluntad: {statsR[4]}</div>
-        <div className='carF' style={statsF[5] > statsR[5] ? {display:'none'}:{display:'flex'}}>Carisma: {statsR[5]}</div>
-    <h1 className='habiF'>Habilidades</h1>
-        <div className='knowK'>
-        <h2 className='knowF'>Conocimientos</h2>
-            <div className='acadF' style={habilidadesKF[0] <= habilidadesKR[0] ? {display:'none'}:{display:'flex'}}>Academicismo: {habilidadesKF[0]}</div>
-            <div className='alquF' style={habilidadesKF[1] <= habilidadesKR[1] ? {display:'none'}:{display:'flex'}}>Alquimia: {habilidadesKF[1]}</div>
-            <div className='sorcF' style={habilidadesKF[2] <= habilidadesKR[2] ? {display:'none'}:{display:'flex'}}>Hechicería: {habilidadesKF[2]}</div>
-            <div className='infoF' style={habilidadesKF[3] <= habilidadesKR[3] ? {display:'none'}:{display:'flex'}}>Informática: {habilidadesKF[3]}</div>
-            <div className='inveF' style={habilidadesKF[4] <= habilidadesKR[4] ? {display:'none'}:{display:'flex'}}>Investigación: {habilidadesKF[4]}</div>
-            <div className='lingF' style={habilidadesKF[5] <= habilidadesKR[5] ? {display:'none'}:{display:'flex'}}>Lingüística: {habilidadesKF[5]}</div>
-            <div className='mediF' style={habilidadesKF[6] <= habilidadesKR[6] ? {display:'none'}:{display:'flex'}}>Medicina: {habilidadesKF[6]}</div>
-            <div className='oculF' style={habilidadesKF[7] <= habilidadesKR[7] ? {display:'none'}:{display:'flex'}}>Ocultismo: {habilidadesKF[7]}</div>
-            <div className='teolF' style={habilidadesKF[8] <= habilidadesKR[8] ? {display:'none'}:{display:'flex'}}>Teología: {habilidadesKF[8]}</div>
-            <div className='trcaF' style={habilidadesKF[9] <= habilidadesKR[9] ? {display:'none'}:{display:'flex'}}>Trato con Animales: {habilidadesKF[9]}</div>
-            <div className='poisF' style={habilidadesKF[10] <= habilidadesKR[10] ? {display:'none'}:{display:'flex'}}>Venenos: {habilidadesKF[10]}</div>
-            <div className='acadF' style={habilidadesKF[0] > habilidadesKR[0] ? {display:'none'}:{display:'flex'}}>Academicismo: {habilidadesKR[0]}</div>
-            <div className='alquF' style={habilidadesKF[1] > habilidadesKR[1] ? {display:'none'}:{display:'flex'}}>Alquimia: {habilidadesKR[1]}</div>
-            <div className='sorcF' style={habilidadesKF[2] > habilidadesKR[2] ? {display:'none'}:{display:'flex'}}>Hechicería: {habilidadesKR[2]}</div>
-            <div className='infoF' style={habilidadesKF[3] > habilidadesKR[3] ? {display:'none'}:{display:'flex'}}>Informática: {habilidadesKR[3]}</div>
-            <div className='inveF' style={habilidadesKF[4] > habilidadesKR[4] ? {display:'none'}:{display:'flex'}}>Investigación: {habilidadesKR[4]}</div>
-            <div className='lingF' style={habilidadesKF[5] > habilidadesKR[5] ? {display:'none'}:{display:'flex'}} >Lingüística: {habilidadesKR[5]}</div>
-            <div className='mediF' style={habilidadesKF[6] > habilidadesKR[6] ? {display:'none'}:{display:'flex'}}>Medicina: {habilidadesKR[6]}</div>
-            <div className='oculF' style={habilidadesKF[7] > habilidadesKR[7] ? {display:'none'}:{display:'flex'}}>Ocultismo: {habilidadesKR[7]}</div>
-            <div className='teolF' style={habilidadesKF[8] > habilidadesKR[8] ? {display:'none'}:{display:'flex'}}>Teología: {habilidadesKR[8]}</div>
-            <div className='trcaF' style={habilidadesKF[9] > habilidadesKR[9] ? {display:'none'}:{display:'flex'}}>Trato con Animales: {habilidadesKR[9]}</div>
-            <div className='poisF' style={habilidadesKF[10] > habilidadesKR[10] ? {display:'none'}:{display:'flex'}}>Venenos: {habilidadesKR[10]}</div>
+    <CharacteristicHandler characteristic={characteristic} setCharacteristic={setCharacteristic}/>
+        <div className='habiF'>
+        <h1>Habilidades</h1>
+            <div className='hab acadF' style={habilidadesKF[0] <= habilidadesKR[0] ? {display:'none'}:{display:'flex'}}><h2>Academicismo:</h2><span>{habilidadesKF[0]}</span></div>
+            <div className='hab alquF' style={habilidadesKF[1] <= habilidadesKR[1] ? {display:'none'}:{display:'flex'}}><h2>Alquimia:</h2><span>{habilidadesKF[1]}</span></div>
+            <div className='hab sorcF' style={habilidadesKF[2] <= habilidadesKR[2] ? {display:'none'}:{display:'flex'}}><h2>Hechicería:</h2><span>{habilidadesKF[2]}</span></div>
+            <div className='hab infoF' style={habilidadesKF[3] <= habilidadesKR[3] ? {display:'none'}:{display:'flex'}}><h2>Informática:</h2><span>{habilidadesKF[3]}</span></div>
+            <div className='hab inveF' style={habilidadesKF[4] <= habilidadesKR[4] ? {display:'none'}:{display:'flex'}}><h2>Investigación:</h2><span>{habilidadesKF[4]}</span></div>
+            <div className='hab lingF' style={habilidadesKF[5] <= habilidadesKR[5] ? {display:'none'}:{display:'flex'}}><h2>Lingüística:</h2><span>{habilidadesKF[5]}</span></div>
+            <div className='hab mediF' style={habilidadesKF[6] <= habilidadesKR[6] ? {display:'none'}:{display:'flex'}}><h2>Medicina:</h2><span>{habilidadesKF[6]}</span></div>
+            <div className='hab oculF' style={habilidadesKF[7] <= habilidadesKR[7] ? {display:'none'}:{display:'flex'}}><h2>Ocultismo:</h2><span>{habilidadesKF[7]}</span></div>
+            <div className='hab teolF' style={habilidadesKF[8] <= habilidadesKR[8] ? {display:'none'}:{display:'flex'}}><h2>Teología:</h2><span>{habilidadesKF[8]}</span></div>
+            <div className='hab trcaF' style={habilidadesKF[9] <= habilidadesKR[9] ? {display:'none'}:{display:'flex'}}><h2>Trato con Animales:</h2><span>{habilidadesKF[9]}</span></div>
+            <div className='hab poisF' style={habilidadesKF[10] <= habilidadesKR[10] ? {display:'none'}:{display:'flex'}}><h2>Venenos:</h2><span>{habilidadesKF[10]}</span></div>
+            <div className='hab acadF' style={{display:'none'}}><h2>Academicismo:</h2><span>{habilidadesKR[0]}</span></div>
+            <div className='hab alquF' style={{display:'none'}}><h2>Alquimia:</h2><span>{habilidadesKR[1]}</span></div>
+            <div className='hab sorcF' style={{display:'none'}}><h2>Hechicería:</h2><span>{habilidadesKR[2]}</span></div>
+            <div className='hab infoF' style={{display:'none'}}><h2>Informática:</h2><span>{habilidadesKR[3]}</span></div>
+            <div className='hab inveF' style={{display:'none'}}><h2>Investigación:</h2><span>{habilidadesKR[4]}</span></div>
+            <div className='hab lingF' style={{display:'none'}}><h2>Lingüística:</h2><span>{habilidadesKR[5]}</span></div>
+            <div className='hab mediF' style={{display:'none'}}><h2>Medicina:</h2><span>{habilidadesKR[6]}</span></div>
+            <div className='hab oculF' style={{display:'none'}}><h2>Ocultismo:</h2><span>{habilidadesKR[7]}</span></div>
+            <div className='hab teolF' style={{display:'none'}}><h2>Teología:</h2><span>{habilidadesKR[8]}</span></div>
+            <div className='hab trcaF' style={{display:'none'}}><h2>Trato con Animales:</h2><span>{habilidadesKR[9]}</span></div>
+            <div className='hab poisF' style={{display:'none'}}><h2>Venenos:</h2><span>{habilidadesKR[10]}</span></div>
+            <div className='perc' style={{display:'flex'}}><h2>Alerta:</h2><span>{Math.max(habilidadesFF[0] , habilidadesFR[0])}</span></div>
+            <div className='hab atleF' style={habilidadesFF[1] <= habilidadesFR[1] ? {display:'none'}:{display:'flex'}}><h2>Atletismo:</h2><span>{habilidadesFF[1]}</span></div>
+            <div className='weap' style={{display:'flex'}}><h2>Armas:</h2><span>{Math.max(habilidadesFF[2] , habilidadesFR[2])}</span></div>
+            <div className='hab batlF' style={habilidadesFF[3] <= habilidadesFR[3] ? {display:'none'}:{display:'flex'}}><h2>Batalla:</h2><span>{habilidadesFF[3]}</span></div>
+            <div className='hab concF' style={habilidadesFF[4] <= habilidadesFR[4] ? {display:'none'}:{display:'flex'}}><h2>Concentración:</h2><span>{habilidadesFF[4]}</span></div>
+            <div className='hab drivF' style={habilidadesFF[5] <= habilidadesFR[5] ? {display:'none'}:{display:'flex'}}><h2>Conducir:</h2><span>{habilidadesFF[5]}</span></div>
+            <div className='hab defeF' style={habilidadesFF[6] <= habilidadesFR[6] ? {display:'none'}:{display:'flex'}}><h2>Defensa:</h2><span>{habilidadesFF[6]}</span></div>
+            <div className='hab equiF' style={habilidadesFF[7] <= habilidadesFR[7] ? {display:'none'}:{display:'flex'}}><h2>Equitación:</h2><span>{habilidadesFF[7]}</span></div>
+            <div className='hab forgF' style={habilidadesFF[8] <= habilidadesFR[8] ? {display:'none'}:{display:'flex'}}><h2>Herrería:</h2><span>{habilidadesFF[8]}</span></div>
+            <div className='hab intiF' style={habilidadesFF[9] <= habilidadesFR[9] ? {display:'none'}:{display:'flex'}}><h2>Intimidación:</h2><span>{habilidadesFF[9]}</span></div>
+            <div className='hab mechF' style={habilidadesFF[10] <= habilidadesFR[10] ? {display:'none'}:{display:'flex'}}><h2>Mecánica:</h2><span>{habilidadesFF[10]}</span></div>
+            <div className='hab periF' style={habilidadesFF[11] <= habilidadesFR[11] ? {display:'none'}:{display:'flex'}}><h2>Pericias:</h2><span>{habilidadesFF[11]}</span></div>
+            <div className='hab stelF' style={habilidadesFF[12] <= habilidadesFR[12] ? {display:'none'}:{display:'flex'}}><h2>Sigilo:</h2><span>{habilidadesFF[12]}</span></div>
+            <div className='hab supeF' style={habilidadesFF[13] <= habilidadesFR[13] ? {display:'none'}:{display:'flex'}}><h2>Supervivencia:</h2><span>{habilidadesFF[13]}</span></div>
+            <div className='hab r atleF' style={{display:'none'}}><h2>Atletismo:</h2><span>{habilidadesFR[1]}</span></div>
+            <div className='hab r batlF' style={{display:'none'}}><h2>Batalla:</h2><span>{habilidadesFR[3]}</span></div>
+            <div className='hab r concF' style={{display:'none'}}><h2>Concentración:</h2><span>{habilidadesFR[4]}</span></div>
+            <div className='hab r drivF' style={{display:'none'}}><h2>Conducir:</h2><span>{habilidadesFR[5]}</span></div>
+            <div className='hab r defeF' style={{display:'none'}}><h2>Defensa:</h2><span>{habilidadesFR[6]}</span></div>
+            <div className='hab r equiF' style={{display:'none'}}><h2>Equitación:</h2><span>{habilidadesFR[7]}</span></div>
+            <div className='hab r forgF' style={{display:'none'}}><h2>Herrería:</h2><span>{habilidadesFR[8]}</span></div>
+            <div className='hab r intiF' style={{display:'none'}}><h2>Intimidación:</h2><span>{habilidadesFR[9]}</span></div>
+            <div className='hab r mechF' style={{display:'none'}}><h2>Mecánica:</h2><span>{habilidadesFR[10]}</span></div>
+            <div className='hab r periF' style={{display:'none'}}><h2>Pericias:</h2><span>{habilidadesFR[11]}</span></div>
+            <div className='hab r stelF' style={{display:'none'}}><h2>Sigilo:</h2><span>{habilidadesFR[12]}</span></div>
+            <div className='hab r supeF' style={{display:'none'}}><h2>Supervivencia:</h2><span>{habilidadesFR[13]}</span></div>
+            <div className='hab cookF' style={habilidadesSF[0] <= habilidadesSR[0] ? {display:'none'}:{display:'flex'}}><h2>Cocina:</h2><span>{habilidadesSF[0]}</span></div>
+            <div className='hab comeF' style={habilidadesSF[1] <= habilidadesSR[1] ? {display:'none'}:{display:'flex'}}><h2>Comercio:</h2><span>{habilidadesSF[1]}</span></div>
+            <div className='hab cultF' style={habilidadesSF[2] <= habilidadesSR[2] ? {display:'none'}:{display:'flex'}}><h2>Cultura:</h2><span>{habilidadesSF[2]}</span></div>
+            <div className='hab emphF' style={habilidadesSF[3] <= habilidadesSR[3] ? {display:'none'}:{display:'flex'}}><h2>Empatía:</h2><span>{habilidadesSF[3]}</span></div>
+            <div className='hab etiqF' style={habilidadesSF[4] <= habilidadesSR[4] ? {display:'none'}:{display:'flex'}}><h2>Etiqueta:</h2><span>{habilidadesSF[4]}</span></div>
+            <div className='hab inteF' style={habilidadesSF[5] <= habilidadesSR[5] ? {display:'none'}:{display:'flex'}}><h2>Interpretación:</h2><span>{habilidadesSF[5]}</span></div>
+            <div className='hab lideF' style={habilidadesSF[6] <= habilidadesSR[6] ? {display:'none'}:{display:'flex'}}><h2>Liderazgo:</h2><span>{habilidadesSF[6]}</span></div>
+            <div className='hab deceF' style={habilidadesSF[7] <= habilidadesSR[7] ? {display:'none'}:{display:'flex'}}><h2>Subterfugio:</h2><span>{habilidadesSF[7]}</span></div>
+            <div className='hab r cookF' style={{display:'none'}}><h2>Cocina:</h2><span>{habilidadesSR[0]}</span></div>
+            <div className='hab r comeF' style={{display:'none'}}><h2>Comercio:</h2><span>{habilidadesSR[1]}</span></div>
+            <div className='hab r cultF' style={{display:'none'}}><h2>Cultura:</h2><span>{habilidadesSR[2]}</span></div>
+            <div className='hab r emphF' style={{display:'none'}}><h2>Empatía:</h2><span>{habilidadesSR[3]}</span></div>
+            <div className='hab r etiqF' style={{display:'none'}}><h2>Etiqueta:</h2><span>{habilidadesSR[4]}</span></div>
+            <div className='hab r inteF' style={{display:'none'}}><h2>Interpretación:</h2><span>{habilidadesSR[5]}</span></div>
+            <div className='hab r lideF' style={{display:'none'}}><h2>Liderazgo:</h2><span>{habilidadesSR[6]}</span></div>
+            <div className='hab r deceF' style={{display:'none'}}><h2>Subterfugio:</h2><span>{habilidadesSR[7]}</span></div>
         </div>
-        <div className='featF'>
-        <h2 className='featF'>Proezas</h2>
-            <div className='percF' style={habilidadesFF[0] <= habilidadesFR[0] ? {display:'none'}:{display:'flex'}}>Alerta: {habilidadesFF[0]}</div>
-            <div className='atleF' style={habilidadesFF[1] <= habilidadesFR[1] ? {display:'none'}:{display:'flex'}}>Atletismo: {habilidadesFF[1]}</div>
-            <div className='weapF' style={habilidadesFF[2] <= habilidadesFR[2] ? {display:'none'}:{display:'flex'}}>Armas: {habilidadesFF[2]}</div>
-            <div className='batlF' style={habilidadesFF[3] <= habilidadesFR[3] ? {display:'none'}:{display:'flex'}}>Batalla: {habilidadesFF[3]}</div>
-            <div className='concF' style={habilidadesFF[4] <= habilidadesFR[4] ? {display:'none'}:{display:'flex'}}>Concentración: {habilidadesFF[4]}</div>
-            <div className='drivF' style={habilidadesFF[5] <= habilidadesFR[5] ? {display:'none'}:{display:'flex'}}>Conducir: {habilidadesFF[5]}</div>
-            <div className='defeF' style={habilidadesFF[6] <= habilidadesFR[6] ? {display:'none'}:{display:'flex'}}>Defensa: {habilidadesFF[6]}</div>
-            <div className='equiF' style={habilidadesFF[7] <= habilidadesFR[7] ? {display:'none'}:{display:'flex'}}>Equitación: {habilidadesFF[7]}</div>
-            <div className='forgF' style={habilidadesFF[8] <= habilidadesFR[8] ? {display:'none'}:{display:'flex'}}>Herrería: {habilidadesFF[8]}</div>
-            <div className='intiF' style={habilidadesFF[9] <= habilidadesFR[9] ? {display:'none'}:{display:'flex'}}>Intimidación: {habilidadesFF[9]}</div>
-            <div className='mechF' style={habilidadesFF[10] <= habilidadesFR[10] ? {display:'none'}:{display:'flex'}}>Mecánica: {habilidadesFF[10]}</div>
-            <div className='periF' style={habilidadesFF[11] <= habilidadesFR[11] ? {display:'none'}:{display:'flex'}}>Pericias: {habilidadesFF[11]}</div>
-            <div className='stelF' style={habilidadesFF[12] <= habilidadesFR[12] ? {display:'none'}:{display:'flex'}}>Sigilo: {habilidadesFF[12]}</div>
-            <div className='supeF' style={habilidadesFF[13] <= habilidadesFR[13] ? {display:'none'}:{display:'flex'}}>Supervivencia: {habilidadesFF[13]}</div>
-            <div className='percF' style={habilidadesFF[0] > habilidadesFR[0] ? {display:'none'}:{display:'flex'}}>Alerta: {habilidadesFR[0]}</div>
-            <div className='atleF' style={habilidadesFF[1] > habilidadesFR[1] ? {display:'none'}:{display:'flex'}}>Atletismo: {habilidadesFR[1]}</div>
-            <div className='weapF' style={habilidadesFF[2] > habilidadesFR[2] ? {display:'none'}:{display:'flex'}}>Armas: {habilidadesFR[2]}</div>
-            <div className='batlF' style={habilidadesFF[3] > habilidadesFR[3] ? {display:'none'}:{display:'flex'}}>Batalla: {habilidadesFR[3]}</div>
-            <div className='concF' style={habilidadesFF[4] > habilidadesFR[4] ? {display:'none'}:{display:'flex'}}>Concentración: {habilidadesFR[4]}</div>
-            <div className='drivF' style={habilidadesFF[5] > habilidadesFR[5] ? {display:'none'}:{display:'flex'}}>Conducir: {habilidadesFR[5]}</div>
-            <div className='defeF' style={habilidadesFF[6] > habilidadesFR[6] ? {display:'none'}:{display:'flex'}}>Defensa: {habilidadesFR[6]}</div>
-            <div className='equiF' style={habilidadesFF[7] > habilidadesFR[7] ? {display:'none'}:{display:'flex'}}>Equitación: {habilidadesFR[7]}</div>
-            <div className='forgF' style={habilidadesFF[8] > habilidadesFR[8] ? {display:'none'}:{display:'flex'}}>Herrería: {habilidadesFR[8]}</div>
-            <div className='intiF' style={habilidadesFF[9] > habilidadesFR[9] ? {display:'none'}:{display:'flex'}}>Intimidación: {habilidadesFR[9]}</div>
-            <div className='mechF' style={habilidadesFF[10] > habilidadesFR[10] ? {display:'none'}:{display:'flex'}}>Mecánica: {habilidadesFR[10]}</div>
-            <div className='periF' style={habilidadesFF[11] > habilidadesFR[11] ? {display:'none'}:{display:'flex'}}>Pericias: {habilidadesFR[11]}</div>
-            <div className='stelF' style={habilidadesFF[12] > habilidadesFR[12] ? {display:'none'}:{display:'flex'}}>Sigilo: {habilidadesFR[12]}</div>
-            <div className='supeF' style={habilidadesFF[13] > habilidadesFR[13] ? {display:'none'}:{display:'flex'}}>Supervivencia: {habilidadesFR[13]}</div>
         </div>
-        <div className='sociF'>
-        <h2 className='sociF'>Sociales</h2>
-            <div className='cookF' style={habilidadesSF[0] <= habilidadesSR[0] ? {display:'none'}:{display:'flex'}}>Cocina: {habilidadesSF[0]}</div>
-            <div className='comeF' style={habilidadesSF[1] <= habilidadesSR[1] ? {display:'none'}:{display:'flex'}}>Comercio: {habilidadesSF[1]}</div>
-            <div className='cultF' style={habilidadesSF[2] <= habilidadesSR[2] ? {display:'none'}:{display:'flex'}}>Cultura: {habilidadesSF[2]}</div>
-            <div className='emphF' style={habilidadesSF[3] <= habilidadesSR[3] ? {display:'none'}:{display:'flex'}}>Empatía: {habilidadesSF[3]}</div>
-            <div className='etiqF' style={habilidadesSF[4] <= habilidadesSR[4] ? {display:'none'}:{display:'flex'}}>Etiqueta: {habilidadesSF[4]}</div>
-            <div className='inteF' style={habilidadesSF[5] <= habilidadesSR[5] ? {display:'none'}:{display:'flex'}}>Interpretación: {habilidadesSF[5]}</div>
-            <div className='lideF' style={habilidadesSF[6] <= habilidadesSR[6] ? {display:'none'}:{display:'flex'}}>Liderazgo: {habilidadesSF[6]}</div>
-            <div className='deceF' style={habilidadesSF[7] <= habilidadesSR[7] ? {display:'none'}:{display:'flex'}}>Subterfugio: {habilidadesSF[7]}</div>
-            <div className='cookF' style={habilidadesSF[0] > habilidadesSR[0] ? {display:'none'}:{display:'flex'}}>Cocina: {habilidadesSR[0]}</div>
-            <div className='comeF' style={habilidadesSF[1] > habilidadesSR[1] ? {display:'none'}:{display:'flex'}}>Comercio: {habilidadesSR[1]}</div>
-            <div className='cultF' style={habilidadesSF[2] > habilidadesSR[2] ? {display:'none'}:{display:'flex'}}>Cultura: {habilidadesSR[2]}</div>
-            <div className='emphF' style={habilidadesSF[3] > habilidadesSR[3] ? {display:'none'}:{display:'flex'}}>Empatía: {habilidadesSR[3]}</div>
-            <div className='etiqF' style={habilidadesSF[4] > habilidadesSR[4] ? {display:'none'}:{display:'flex'}}>Etiqueta: {habilidadesSR[4]}</div>
-            <div className='inteF' style={habilidadesSF[5] > habilidadesSR[5] ? {display:'none'}:{display:'flex'}}>Interpretación: {habilidadesSR[5]}</div>
-            <div className='lideF' style={habilidadesSF[6] > habilidadesSR[6] ? {display:'none'}:{display:'flex'}}>Liderazgo: {habilidadesSR[6]}</div>
-            <div className='deceF' style={habilidadesSF[7] > habilidadesSR[7] ? {display:'none'}:{display:'flex'}}>Subterfugio: {habilidadesSR[7]}</div>
-        </div>
-    <div className='combf'>
-    <h1 className='combF'>Combate</h1>
-        <div className='lifeF'>Vida: {life}</div>
-        <div className='inicF'>Iniciativa: {iniciativeTF}k{iniciativeKF}+{iniciativeBonus}</div>
-        <div className='evasF'>Evasión: {evasion}</div>
-        <div className='armoF'>Armadura: {armor}</div>
-        <div className='resiF'>Resistencia Magica: {resist}</div>
-        <div className='moveF'>Movimiento: {movement}</div>
-        <div className='ataqF'>Ataque Presicion: {attackT}k{attackK}+{attackBonusF}</div>
-        <div className='dmgF'>Ataque Daño: {damageT}k{damageK}+{damageBonusF}</div>
+        <div className='rightSide'>
+        <div className='statsF'>
+    <h1>Estadisticas</h1>
+        <div className='strF' style={statsF[0] <= statsR[0] ? {display:'none'}:{display:''}}><h2>{statsF[0]}</h2><span>Fue</span></div>
+        <div className='dexF' style={statsF[1] <= statsR[1] ? {display:'none'}:{display:''}}><h2>{statsF[1]}</h2><span>Des</span></div>
+        <div className='conF' style={statsF[2] <= statsR[2] ? {display:'none'}:{display:''}}><h2>{statsF[2]}</h2><span>Con</span></div>
+        <div className='intF' style={statsF[3] <= statsR[3] ? {display:'none'}:{display:''}}><h2>{statsF[3]}</h2><span>Int</span></div>
+        <div className='wilF' style={statsF[4] <= statsR[4] ? {display:'none'}:{display:''}}><h2>{statsF[4]}</h2><span>Vol</span></div>
+        <div className='chaF' style={statsF[5] <= statsR[5] ? {display:'none'}:{display:''}}><h2>{statsF[5]}</h2><span>Car</span></div>
+        <div className='strF' style={statsF[0] > statsR[0] ? {display:'none'}:{display:''}}><h2>{statsR[0]}</h2><span>Fue</span></div>
+        <div className='dexF' style={statsF[1] > statsR[1] ? {display:'none'}:{display:''}}><h2>{statsR[1]}</h2><span>Des</span></div>
+        <div className='conF' style={statsF[2] > statsR[2] ? {display:'none'}:{display:''}}><h2>{statsR[2]}</h2><span>Con</span></div>
+        <div className='intF' style={statsF[3] > statsR[3] ? {display:'none'}:{display:''}}><h2>{statsR[3]}</h2><span>Int</span></div>
+        <div className='wilF' style={statsF[4] > statsR[4] ? {display:'none'}:{display:''}}><h2>{statsR[4]}</h2><span>Vol</span></div>
+        <div className='carF' style={statsF[5] > statsR[5] ? {display:'none'}:{display:''}}><h2>{statsR[5]}</h2><span>Car</span></div>
     </div>
-    <div className='poweF'>
-    <h1 className='poweF'>Poderes</h1>
-    <PowerHandler powers={powers} setPowers={setPowers} /> 
-    </div>
+        <div className='combf'>
+            <h1>Combate</h1>
+                <div className='lifeF'><span>{life}</span></div>
+                <div className='iniholder'></div>
+                <div className='inicF'><span>{iniciativeTF}k{iniciativeKF}+{iniciativeBonus}</span></div>
+                <div className='moveF'><span>{movement}</span></div>
+                <div className='evasF'><span>{evasion}</span></div>
+                <div className='armoF'><span>{armor}</span></div>
+                <div className='resF'><span>{resist}</span></div>
+                <div className='atkholder'></div>
+                <div className='ataqF'><span>{attackT}k{attackK}+{attackBonusF}</span></div>
+                <div className='dmgholder'></div>
+                <div className='dmgF'><span>{damageT}k{damageK}+{damageBonusF}</span></div>
+        </div>
+        <h1 className='poweF'>Poderes</h1>
+        <PowerHandler powers={powers} setPowers={setPowers} /> 
+        </div>
+        <div className='specF' style={true <= displaySp ? {display:''}:{display:'none'}}>
+        <h1 className='specF'>Especialidades</h1>
+        <SpecialtyHandler specialty={specialty} setSpecialty={setSpecialty}/>
+        </div>
+            <div className='descF' style={description > '' ? {display:''}:{display:'none'}}><h2 className='in'>Descripción</h2><span className='inDL'>{description}</span></div>
+            <div className='behaF' style={behavior > '' ? {display:''}:{display:'none'}}><h2 className='in'>Comportamiento</h2><span className='inDL'>{behavior}</span></div>
+        </div>
         </div>
         <button  className='submF' onClick={doCapture}>Guardar</button>
     </div>

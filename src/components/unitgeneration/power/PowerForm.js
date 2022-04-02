@@ -4,7 +4,7 @@ import {v4 as uuid} from "uuid";
 
 function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType, setPowerType, powerDistance, setPowerDistance, powerTarget, setPowerTarget, powerDuration, setPowerDuration, 
   powerDamage1, setPowerDamage1, powerDamage2, setPowerDamage2, powerHeal1, setPowerHeal1, powerHeal2, setPowerHeal2, powerEffect1, setPowerEffect1, powerEffect2, setPowerEffect2,
-  powerEffect3, setPowerEffect3, powerEffect4, setPowerEffect4, starDamage, setStarDamage, powers, setPowers }) {
+  powerEffect3, setPowerEffect3, starDamage, powers, setPowers }) {
 
     //Setter de Random
     const usesPower = _.sampleSize(['Un uso por Combate', 'Un uso cada dos Turnos', '4 Usos', '5 Usos', '6 Usos', 'A voluntad', 
@@ -25,8 +25,8 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
     ' Gana 10 + Nivel de Armadura', 'Gana 5 + Nivel de Resistencia', 'Gana 10 + Nivel de Resistencia', 'Gana 5 + Nivel de Reduccion de Daño', 'Gana 10 + Nivel de Reduccion de Daño',
     ' Gana 5 * Nivel de Vida', 'Gana 10 * Nivel de Vida', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
     '', '', '', '', ''], (Math.ceil(Math.random())));
-    const effectPower2 = _.sampleSize([' Aplica el estado alterado:' + (_.sampleSize([' Aturdido', 'Capturado', 'Ceguera', 'Debilitado', 'Derribado', 'Enamorado', 'Enfermo', 
-    ' Envenenado', 'Paralizado', 'Sangrado'])), 'Empuja 6 metros', 'Atrae 6 metros', 'Gana 10 + Nivel de Evasión', 'Gana 10 + Nivel de Evasión', 'Gana 5 + Nivel de Armadura',
+    const effectPower2 = _.sampleSize([' Aplica el estado alterado:' + (_.sampleSize([' Aturdido', ' Capturado', ' Ceguera', ' Debilitado', ' Derribado', ' Enamorado', ' Enfermo', 
+    ' Envenenado', ' Paralizado', ' Sangrado'])), 'Empuja 6 metros', 'Atrae 6 metros', 'Gana 10 + Nivel de Evasión', 'Gana 10 + Nivel de Evasión', 'Gana 5 + Nivel de Armadura',
     ' Gana 10 + Nivel de Armadura', 'Gana 5 + Nivel de Resistencia', 'Gana 10 + Nivel de Resistencia', 'Gana 5 + Nivel de Reduccion de Daño', 'Gana 10 + Nivel de Reduccion de Daño',
     ' Gana 5 * Nivel de Vida', 'Gana 10 * Nivel de Vida', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 
     '', '', '', '', ''], (Math.ceil(Math.random())));
@@ -50,7 +50,6 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
           effect1: powerEffect1,
           effect2: powerEffect2,
           effect3: powerEffect3,
-          effect4: powerEffect4,
           id: uuid()}
         ]);
         setPowerName('');
@@ -83,17 +82,16 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       setPowerEffect1(effectPower1);
       setPowerEffect2(effectPower2);
       setPowerEffect3('');
-      setPowerEffect4('');
     }
 
   return (
     <form className='powerForm'>
       <div className='namePower'>
-      Nombre
+      <h2>Nombre</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerName(e.target.value)} value={powerName}/>
       </div>
       <div className='usePower'>
-      Usos
+      <h2>Usos</h2>
       <select onChange={(e) => setPowerUses(e.target.value)} value={powerUses}>
       <option value="A voluntad">A voluntad</option>
         <option value="Un uso por Combate">Un uso por Combate</option>
@@ -105,11 +103,11 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       </select>
       </div>
       <div className='typePower'>
-      Elemento/Tipo
+      <h2>Elemento/Tipo</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerType(e.target.value)} value={powerType}/>
       </div>
       <div className='distancePower'>
-      Distancia
+      <h2>Distancia</h2>
       <select onChange={(e) => setPowerDistance(e.target.value)} value={powerDistance}>
         <option value="Personal">Personal</option>
         <option value="Toque">Toque</option>
@@ -120,7 +118,7 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       </select>
       </div>
       <div className='targetPower'>
-      Objetivos
+      <h2>Objetivos</h2>
       <select onChange={(e) => setPowerTarget(e.target.value)} value={powerTarget}>
         <option value="Individuo">Individuo</option>
         <option value="Parte">Parte</option>
@@ -132,7 +130,7 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       </select>
       </div>
       <div className='durationPower'>
-      Duración
+      <h2>Duración</h2>
       <select onChange={(e) => setPowerDuration(e.target.value)} value={powerDuration}>
         <option value="Instantáneo">Instantáneo</option>
         <option value="Concentración">Concentración</option>
@@ -144,39 +142,41 @@ function PowerForm({ powerName, setPowerName, powerUses, setPowerUses, powerType
       </select>
       </div>
       <div className='dmgPower'>
-      Daño
+      <h2>Daño</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerDamage1(e.target.value)} value={powerDamage1} placeholder='k1'/>
       </div>
       <div className='dmgExtraPower'>
-      Daño Fijo Adicional
+      <h2>Daño Fijo Adicional</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerDamage2(e.target.value)} value={powerDamage2} placeholder='0'/>
       </div>
       <div className='healPower'>
-      Curación
+      <h2>Curación</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerHeal1(e.target.value)} value={powerHeal1} placeholder='k1'/>
       </div>
       <div className='healExtraPower'>
-      Curación Fija Adicional
+      <h2>Curación Fija Adicional</h2>
       <input type='text' className='todo-input' onChange={(e) => setPowerHeal2(e.target.value)} value={powerHeal2} placeholder='0'/>
       </div>
       <div className='effectAPower'>
-      Efecto A
-      <input type='text' className='todo-input' onChange={(e) => setPowerEffect1(e.target.value)} value={powerEffect1}/>
+      <h2>Efecto A</h2>
+      <textarea type='text' className='todo-input' onChange={(e) => setPowerEffect1(e.target.value)} value={powerEffect1}/>
       </div>
       <div className='effectBPower'>
-      Efecto B
-      <input type='text' className='todo-input' onChange={(e) => setPowerEffect2(e.target.value)} value={powerEffect2}/>
+      <h2>Efecto B</h2>
+      <textarea type='text' className='todo-input' onChange={(e) => setPowerEffect2(e.target.value)} value={powerEffect2}/>
       </div>
       <div className='effectCPower'>
-      Efecto C
-      <input type='text' className='todo-input' onChange={(e) => setPowerEffect3(e.target.value)} value={powerEffect3}/>
+      <h2>Efecto C</h2>
+      <textarea type='text' className='todo-input' onChange={(e) => setPowerEffect3(e.target.value)} value={powerEffect3}/>
       </div>
+      <div className='buttonpower'>
       <button className='powerAddButton frm' type='submit' onClick={submitPowerHandler} id='bFinal5'>
       <span>Agregar</span>
       </button>
       <button className='powerRandButton frm' type='submit' onClick={powerHandlerR} id='bRandom5'>
       <span>Randomizar</span>
       </button>
+      </div>
     </form>
   )
 }

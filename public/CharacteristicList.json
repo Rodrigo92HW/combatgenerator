@@ -42,7 +42,7 @@
     {
         "Name" : "Aura de Infortunio",
         "Uses" : "Pasivo",
-        "Effect" : "Todas las criaturas que se encuentren a tantos metros de esta como sus Estrellas restaran -30 a todas sus tiradas de Estadística, Habilidad o Precisión (no afecta Daño o Iniciativa)002E"
+        "Effect" : "Todas las criaturas que se encuentren a tantos metros de esta como sus Estrellas restaran -30 a todas sus tiradas de Estadística, Habilidad o Precisión (no afecta Daño o Iniciativa)"
     },
     {
         "Name" : "Aura de Oscuridad",

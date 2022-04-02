@@ -1,0 +1,86 @@
+[
+    {
+        "Name" : "Asalto Defensivo",
+        "Requiere" : "Oponente realiza Acción Compleja",
+        "Cost" : "2",
+        "Effect" : "La criatura puede realizar un Ataque Defensivo (realiza un Ataque y obtén Reducción de Daño como Cuerpo o Mente por una ronda)."
+    },
+    {
+        "Name" : "Asalto Contundente",
+        "Requiere" : "Oponente realiza Acción Compleja",
+        "Cost" : "2",
+        "Effect" : "La criatura puede realizar un Ataque Fuerte (realiza un Ataque en el que lanza y guarda dados adicionales de Daño igual a sus Estrellas."
+    },
+    {
+        "Name" : "Agarre Veloz",
+        "Requiere" : "Oponente adyacente realiza Acción Compleja",
+        "Cost" : "2",
+        "Effect" : "La criatura puede intentar un Agarre contra la criatura que realizo la Acción (tirada enfrentada de Atletismo con Fuerza contra Atletismo con Fuerza o Destreza de su objetivo; si lo superas aplica la condición Capturado)."
+    },
+    {
+        "Name" : "Ataque Veloz",
+        "Requiere" : "Oponente realiza Acción Rápida",
+        "Cost" : "1",
+        "Effect" : "La criatura puede realizar un Ataque (Acción Rápida)."
+    },
+    {
+        "Name" : "Terror",
+        "Requiere" : "Oponente realizara una Acción Compleja contra este",
+        "Cost" : "3",
+        "Effect" : "La criatura puede intentar la Acción de Intimidar contra quien realiza la Acción (intentar aplicar el estado de Miedo al objetivo realizando una tirada de Intimidación contra una tirada de Voluntad de su parte, dividiendo el resultado final de la tirada de Intimidación a la mitad. Por cada 5 + Nivel/2 - redondeado hacia arriba - de diferencia se incrementará en +1 el nivel de Miedo)."
+    },
+    {
+        "Name" : "Poderío",
+        "Requiere" : "Final del Turno de un Oponente",
+        "Cost" : "4",
+        "Effect" : "La criatura puede emplear una única vez uno de los Poderes que posee, si los usos lo permiten. Si no posee usos lanza 1d10 y solo podrá emplear este Poder si obtiene 10."
+    },
+    {
+        "Name" : "Resistencia Legendaria",
+        "Requiere" : "Sufre un Estado Alterado o Efecto Negativo",
+        "Cost" : "4",
+        "Effect" : "La criatura puede recuperarse de ese Estado o Efecto Negativo."
+    },
+    {
+        "Name" : "Sustitución",
+        "Requiere" : "2",
+        "Cost" : "Oponente realiza un Ataque contra esta criatura",
+        "Effect" : "La criatura crea una ilusión inmaterial que recibe el ataque por este."
+    },
+    {
+        "Name" : "Contrarrestar Monstruoso",
+        "Requiere" : "Oponente emplea un Hechizo",
+        "Cost" : "4",
+        "Effect" : "El Hechizo se ve anulado, quien haya usado este Hechizo debe gastar el Mana correspondiente al Hechizo, pero sin obtener ninguno de los beneficios de usar este."
+    },
+    {
+        "Name" : "Movilidad",
+        "Requiere" : "Un Oponente se mueve su máximo Movimiento",
+        "Cost" : "1",
+        "Effect" : "La criatura puede moverse hasta el máximo de su Movimiento sin generar Ataques de Oportunidad."
+    },
+    {
+        "Name" : "Respiro",
+        "Requiere" : "Oponente recupera Vida",
+        "Cost" : "1",
+        "Effect" : "La criatura puede recuperar 1d10 + 10 + Nivel*2 de Vida."
+    },
+    {
+        "Name" : "Reactivo",
+        "Requiere" : "Oponente Ataca a esta criatura",
+        "Cost" : "1",
+        "Effect" : "La criatura puede ganar Evasión adicional como Nivel*3 + 5."
+    },
+    {
+        "Name" : "Recuperación Inestable",
+        "Requiere" : "Su Vida es reducida a la Mitad",
+        "Cost" : "3",
+        "Effect" : "Lanza 1d10 hasta obtener 1, la criatura recupera Vida igual a la suma de sus resultados (repitiendo los 10 normalmente). "
+    },
+    {
+        "Name" : "Inestabilidad Total ",
+        "Requiere" : "Su Vida es reducida a 0",
+        "Cost" : "0",
+        "Effect" : "Lanza 1d10 hasta obtener 1, la criatura realiza Daño igual a la suma de sus resultados (repitiendo los 10 normalmente) a todas las criaturas a tantos metros como sus Estrellas + Nivel. Este Daño es reducido por Armadura o Resistencia Mágica (pero solo por uno de estos)."
+    }
+]

@@ -4,7 +4,6 @@ import PowerRender from './PowerRender'
 function PowerHandler({powers, setPowers}) {
 
   return (
-    <div className='power-container'>
     <ul className='power-list'>
       {powers.map((power) => (
         <PowerRender 
@@ -21,16 +20,12 @@ function PowerHandler({powers, setPowers}) {
         effect1={power.effect1}
         effect2={power.effect2}
         effect3={power.effect3}
-        effect4={power.effect4}
-        extra1={power.extra1}
-        extra2={power.extra2}
         key={power.id} 
         setPowers={setPowers} 
         powers={powers}
         power={power}/>
       ))}
     </ul>
-    </div>
   )
 }
 

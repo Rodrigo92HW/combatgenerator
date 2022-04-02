@@ -4,8 +4,7 @@ import CharacteristicRender from './CharacteristicRender';
 function CharacteristicHandler ({ characteristic, setCharacteristic }) {
 
   return (
-    <div className='charialty-container'>
-    <ul className='charialty-list'>
+    <ul className='char-list'>
       {characteristic.map((char) => (
         <CharacteristicRender 
         name={char.name} 
@@ -17,7 +16,6 @@ function CharacteristicHandler ({ characteristic, setCharacteristic }) {
         char={char}/>
       ))}
     </ul>
-    </div>
   )
 }
 
